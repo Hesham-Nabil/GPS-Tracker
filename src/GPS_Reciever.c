@@ -1,5 +1,5 @@
 #include "UART.h"
-
+extern char GPS_data[80];
 char check_logname(void){
     char i=0;
     char logname[] = "$GPRMC,";
@@ -19,9 +19,7 @@ void getGpsData(void){
     while (data!='*'){
         GPS_data[i] = data;
         data = UART0_read_data();
-
         if(i>=80) break;
-
         i++;
     }
 }

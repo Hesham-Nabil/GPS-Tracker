@@ -42,7 +42,7 @@ SetReg(GPIO_PORTB_DEN_R,0x03); // enable digital I/O on PB0, PB1
 ClearReg(GPIO_PORTB_AMSEL_R ,0x03); // disable analog function on PB0, PB1
 }	
 //function to  check if there is data recieved from GPS
-bool UART0_data_available(){   
+char UART0_data_available(){
 return ((UART0_FR_R & UART_FR_RXFE) ? 1 : 0 ); //if RXFE(Receive FIFO Empty) bit is clear, indicating data has been received so we send 1(true)
 }	                                         // if RXFE is set so there is no data available then we send 0(false)
 //function to read the data provided by the GPS
@@ -50,7 +50,7 @@ char UART0_read_data(){       // note that the data of the type <char>
 while(!(UART0_FR_R & UART_FR_RXFE));  // check if RXFE is empty(0) so the data is avialable  
 return (char)(UART0_DR_R & 0xFF);   // we are ANDing the first 8 bits in data reg with 0xFF so we are sending the first 8 bits
 }	
-bool UART1_data_available(){   
+char UART1_data_available(){
 return ((UART1_FR_R & UART_FR_RXFE) ? 1 : 0 ); //if RXFE(Receive FIFO Empty) bit is clear, indicating data has been received so we send 1(true)
 }	                                         // if RXFE is set so there is no data available then we send 0(false)
 //function to read the data provided by the GPS
