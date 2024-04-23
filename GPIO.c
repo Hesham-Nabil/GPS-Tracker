@@ -49,6 +49,3 @@ unsigned char SW1_Input(){
 unsigned char SW2_Input(){
 	return(~GetBit(GPIO_PORTF_DATA_R,0));//GET THE INPUT INVERTED OF THE SW2 TO MAKE IF PRESSED 1 
 }
-	
-	
-	
