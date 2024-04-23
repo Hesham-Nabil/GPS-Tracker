@@ -57,4 +57,4 @@ return ((UART1_FR_R & UART_FR_RXFE) ? 1 : 0 ); //if RXFE(Receive FIFO Empty) bit
 char UART1_read_data( ){       // note that the data of the type <char>
 while(!(UART1_FR_R & UART_FR_RXFE));  // check if RXFE is empty(0) so the data is avialable  
 return (char)(UART0_DR_R & 0xFF);   // we are ANDing the first 8 bits in data reg with 0xFF so we are sending the first 8 bits
-}	
+}
