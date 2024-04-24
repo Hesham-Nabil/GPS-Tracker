@@ -2,9 +2,9 @@
 #include "Commands.h"
 void UART0_Init(){         															 // function to initialize UART
 	SetBit(SYSCTL_RCGCUART_R,0);     												 //activate UART0
-	while(( GetBit(SYSCTL_RCGCUART_R,0)==0)); 										 //waiting for UART0 activation
+	while(( GetBit(SYSCTL_PRUART_R,0)==0)); 										 //waiting for UART0 activation
 	//SYSCTL_RCGCGPIO_R |= 0x1;             										 //activate PORT A
-	//while((SYSCTL_RCGCGPIO_R & 0x1)==0) ;  										 // waiting for port A activation
+	//while((SYSCTL_PRGPIO_R & 0x1)==0) ;  										 // waiting for port A activation
 	ClearBit(UART0_CTL_R,0);              										     //disabling UART while initializing
 
 													//setting baudrate 	
@@ -21,9 +21,9 @@ void UART0_Init(){         															 // function to initialize UART
 }
 void UART1_Init(){          // function to initialize UART1
 	SetBit(SYSCTL_RCGCUART_R,1);       //activate UART1
-	while(( GetBit(SYSCTL_RCGCUART_R,1)==0));  //waiting for UART1 activation
-	//SYSCTL_RCGCGPIO_R |= 0x1;               activate PORT A
-	//while((SYSCTL_RCGCGPIO_R & 0x1)==0) ;   waiting for port A activation
+	while(( GetBit(SYSCTL_PRUART_R,1)==0));  //waiting for UART1 activation
+	//SYSCTL_RCGCGPIO_R |= 0x2;               activate PORT A
+	//while((SYSCTL_PRGPIO_R & 0x2)==0) ;   waiting for port A activation
 	
 ClearBit(UART1_CTL_R,0);                 //disabling UART while initializing
 //setting baudrate 	
@@ -40,7 +40,7 @@ SetReg(GPIO_PORTB_DEN_R,0x03); // enable digital I/O on PB0, PB1
 ClearReg(GPIO_PORTB_AMSEL_R ,0x03); // disable analog function on PB0, PB1
 }	
 //function to  check if there is data recieved from GPS
-bool UART0_data_available(){   
+char UART0_data_available(){   
 return ((UART0_FR_R & UART_FR_RXFE) ? 1 : 0 ); //if RXFE(Receive FIFO Empty) bit is clear, indicating data has been received so we send 1(true)
 }	                                         // if RXFE is set so there is no data available then we send 0(false)
 //function to read the data provided by the GPS
@@ -48,7 +48,7 @@ char UART0_read_data(){       // note that the data of the type <char>
 while(!(UART0_FR_R & UART_FR_RXFE));  // check if RXFE is empty(0) so the data is avialable  
 return (char)(UART0_DR_R & 0xFF);   // we are ANDing the first 8 bits in data reg with 0xFF so we are sending the first 8 bits
 }	
-bool UART1_data_available(){   
+char UART1_data_available(){   
 return ((UART1_FR_R & UART_FR_RXFE) ? 1 : 0 ); //if RXFE(Receive FIFO Empty) bit is clear, indicating data has been received so we send 1(true)
 }	                                         // if RXFE is set so there is no data available then we send 0(false)
 //function to read the data provided by the GPS
