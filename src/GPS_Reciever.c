@@ -5,61 +5,55 @@
 #include <math.h>
 #include "Math_Functions.h"
 #define COORDINATES_SIZE 100
-#define BUFFER_SIZE 250
 const double Earth_Radius = 6371000;
 const float PI = 3.14159;
 
-// char check_logname()
-// {
-//     int i = 0;
-//     char logname[] = "$GPRMC,";
-//     while (i < 7)
-//     {
-//         if (logname[i] != UART0_RECIEVE_CHAR())
-//         {
-//             i = 0;
-//             break;
-//         }
-//         i++;
-//     }
-//     return i;
-// }
+char check_logname()
+{
+    int i = 0;
+    char logname[] = "$GPRMC,";
+    while (i < 7)
+    {
+        if (logname[i] != UART0_RECIEVE_CHAR())
+        {
+            i = 0;
+            break;
+        }
+        i++;
+    }
+    return i;
+}
 
-// void getGpsData(char *GPS_DATA)
-// {
-//     char data = UART0_read_data();
-//     char i = 0;
-//     if (check_logname())
-//     {
-//         while (data != '*')
-//         {
-//             data = UART0_read_data();
-//             GPS_DATA[i] = data;
-//             if (i >= 80)
-//                 break;
-//             i++;
-//         }
-//     }
-// }
+void getGpsData(char *GPS_DATA)
+{
+    char data = UART0_RECIEVE_CHAR();
+    char i = 0;
+    if (check_logname())
+    {
+        while (data != '*')
+        {
+            data = UART0_RECIEVE_CHAR();
+            GPS_DATA[i] = data;
+            if (i >= 80)
+                break;
+            i++;
+        }
+    }
+}
 
 // parsing function
 // 161229.487,A,3723.2475,N,12158.3416,W,0.13,309.62,120598, ,*10
 
-void GPS_Start()
-{ // A function that parces the data after $GPRMC, and retrieve the data in variables
-    char buffer[BUFFER_SIZE];
-
+void GPS_Start(){                                         // A function that parces the data after $GPRMC, and retrieve the data in variables
     while (1)
     {
-        GPS_UART_Fill_Buffer(buffer);
-
         const char *rmc = "$GPRMC";
         const char *rmc_ptr = NULL;
 
         float coordinates[COORDINATES_SIZE][2];
         float(*coordinates_ptr)[2] = coordinates;
 
-        rmc_ptr = strstr(buffer, rmc);
+       // rmc_ptr = strstr( "HERE SHOULD BE AN ARRAY OF STRING THAT HAS ALL THE DATA", rmc);
 
         if (rmc_ptr != NULL)
         {
@@ -73,13 +67,6 @@ void GPS_Start()
             }
         }
 
-        coordinates_ptr++;
-
-        if (coordinates_ptr - coordinates > COORDINATES_SIZE)
-        {
-            coordinates_ptr = coordinates;
-            // GPS_EEPROM_Save();                                                      // to be implemented
-        }
     }
 }
 float gps_getdistance(float long1, float lat1, float long2, float lat2)
