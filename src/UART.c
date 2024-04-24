@@ -1,9 +1,8 @@
 #include "PortsDef.h"
-#include <stdbool.h>
 #include "Commands.h"
-void UART0_Init(){          // function to initialize UART
-	SetBit(SYSCTL_RCGCUART_R,0);       //activate UART0
-	while(( GetBit(SYSCTL_RCGCUART_R,0)==0));  //waiting for UART0 activation
+void UART0_Init(){         															 // function to initialize UART
+	SetBit(SYSCTL_RCGCUART_R,0);     												  //activate UART0
+	while(( GetBit(SYSCTL_RCGCUART_R,0)==0)); 										 //waiting for UART0 activation
 	//SYSCTL_RCGCGPIO_R |= 0x1;               activate PORT A
 	//while((SYSCTL_RCGCGPIO_R & 0x1)==0) ;   waiting for port A activation
 	
