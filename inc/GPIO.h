@@ -1,7 +1,7 @@
 #ifndef GPIO
 #define GPIO
 void GPIO_PortF_Init();
-void GPIO_PortE_Init();
+void GPIO_PortA_Init();
 void LED_init();
 void Switches_init();
 void LED_ON();
