@@ -1,5 +1,8 @@
 {
+    "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe",
+    "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "portsdef.h": "c"
+        "math.h": "c",
+        "math_functions.h": "c"
     }
 }
