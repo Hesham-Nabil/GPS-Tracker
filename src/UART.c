@@ -55,6 +55,6 @@ return ((UART1_FR_R & UART_FR_RXFE) ? 1 : 0 ); //if RXFE(Receive FIFO Empty) bit
 }	                                         // if RXFE is set so there is no data available then we send 0(false)
 //function to read the data provided by the GPS
 char UART1_read_data( ){       // note that the data of the type <char>
-while(!(UART1_FR_R & UART_FR_RXFE));  // check if RXFE is empty(0) so the data is avialable  
+while(UART1_FR_R & UART_FR_RXFE);  // check if RXFE is not empty(0) so the data is avialable  
 return (char)(UART0_DR_R & 0xFF);   // we are ANDing the first 8 bits in data reg with 0xFF so we are sending the first 8 bits
 }
