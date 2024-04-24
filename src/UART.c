@@ -11,8 +11,8 @@ ClearBit(UART0_CTL_R,0);                 //disabling UART while initializing
 //setting baudrate 	
 UART0_IBRD_R = 520;                     // IBRD=int(80000000/(16*9600)) = int (520.8333) (divider for frequency)
 UART0_FBRD_R = 53; // FBRD int(0.8333 * 64 +0.5) 
-UART0_LCRH_R = 0x0070; // bit 4,5 are set to 11 (binary), which corresponds to an 8-bit word length.
-	                     //bit 6 is set to 1 (binary) enabling the FIFO mode for the UART receiver and transmitter
+UART0_LCRH_R = 0x0070; // bit 5,6 are set to 11 (binary), which corresponds to an 8-bit word length.
+	                     //bit 4 is set to 1 (binary) enabling the FIFO mode for the UART receiver and transmitter
 
 UART0_CTL_R = 0x0301; // enable RXE, TXE and UART 001100000001
 SetReg(GPIO_PORTA_AFSEL_R ,0x03); // enable alt function PA0, PA1 ,
@@ -31,8 +31,8 @@ ClearBit(UART1_CTL_R,0);                 //disabling UART while initializing
 //setting baudrate 	
 UART1_IBRD_R = 520;                     // IBRD=int(80000000/(16*9600)) = int (520.8333) (divider for frequency)
 UART1_FBRD_R = 53; // FBRD int(0.8333 * 64 +0.5) 
-UART1_LCRH_R = 0x0070; // bit 4,5 are set to 11 (binary), which corresponds to an 8-bit word length.
-	                     //bit 6 is set to 1 (binary) enabling the FIFO mode for the UART receiver and transmitter
+UART1_LCRH_R = 0x0070; // bit 5,6 are set to 11 (binary), which corresponds to an 8-bit word length.
+	                     //bit 4 is set to 1 (binary) enabling the FIFO mode for the UART receiver and transmitter
 
 UART1_CTL_R = 0x0301; // enable RXE, TXE and UART 001100000001
 SetReg(GPIO_PORTB_AFSEL_R ,0x03); // enable alt function PB0, PB1 ,
