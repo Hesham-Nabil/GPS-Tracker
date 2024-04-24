@@ -35,7 +35,7 @@ void UART1_PORTB_Init(){         													 // function to initialize UART1
 
 char UART0_RECIEVE_CHAR(){															 // UART0 function to recieve data 
 	while( UART0_FR_R & 0X010 != 1 );												 // wait untill  the buffer becomes full to recieve what is on the buffer
-	return(UART0_FR_R & 0X0FF)														 // read data on the buffer
+	return(UART0_FR_R & 0X0FF);														 // read data on the buffer
 }
 
 void UART0_TRANSMIT_CHAR(char data){												 // UART0 function to send data
@@ -45,11 +45,11 @@ void UART0_TRANSMIT_CHAR(char data){												 // UART0 function to send data
 
 char UART1_RECIEVE_CHAR(){															 // UART1 function to recieve data 
 	while( UART1_FR_R & 0X010 != 1 );												 // wait untill  the buffer becomes full to recieve what is on the buffer
-	return(UART1_FR_R & 0X0FF)														 // read data on the buffer
+	return(UART1_FR_R & 0X0FF);														 // read data on the buffer
 }
 
 void UART1_TRANSMIT_CHAR(char data){												 // UART1 function to send data
 	while( UART1_FR_R & 0X010 != 0 );												 // wait untill the buffer becomes empty to send data on the buffer
 	UART1_FR_R = data;																 // write data on the buffer
-}
+
 // char UART0_RECIEVE_FROM_GPS(){}   WRITE A FUNCTION TO RECIEVE 80 CHAR FROM THE GPS MODULE
