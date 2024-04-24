@@ -51,5 +51,5 @@ char UART1_RECIEVE_CHAR(){															 // UART1 function to recieve data
 void UART1_TRANSMIT_CHAR(char data){												 // UART1 function to send data
 	while( UART1_FR_R & 0X010 != 0 );												 // wait untill the buffer becomes empty to send data on the buffer
 	UART1_FR_R = data;																 // write data on the buffer
-
+}
 // char UART0_RECIEVE_FROM_GPS(){}   WRITE A FUNCTION TO RECIEVE 80 CHAR FROM THE GPS MODULE
