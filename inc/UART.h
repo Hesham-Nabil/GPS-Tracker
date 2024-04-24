@@ -2,8 +2,8 @@
 #define UART
 void UART0_PORTA_Init();
 void UART1_PORTB_Init();
-bool UART1_data_available();
-char UART1_read_data();
-bool UART0_data_available();
-char UART0_read_data();
+char UART0_RECIEVE_CHAR();
+void UART0_TRANSMIT_CHAR(char data);
+char UART1_RECIEVE_CHAR();
+void UART1_TRANSMIT_CHAR(char data);
 #endif
