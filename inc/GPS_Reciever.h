@@ -1,6 +1,5 @@
-#ifndef GPS
-#define GPS
+#ifndef GPS_Reciever
+#define GPS_Reciever
 
-void GPS_Start();
-float gps_getdistance(float long1, float lat1, float long2, float lat2);
+void GPS_Start(double *Distance, double coordinates[300][2], char* buffer, int i);
 #endif

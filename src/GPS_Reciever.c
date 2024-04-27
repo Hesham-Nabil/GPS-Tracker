@@ -5,7 +5,6 @@
 #include <math.h>
 #include "Math_Functions.h"
 const double Earth_Radius = 6371000;
-const float PI = 3.14159;
 
         // parsing function
         // $GPRMC,161229.487,A,3723.2475,N,12158.3416,W,0.13,309.62,120598, ,*10
