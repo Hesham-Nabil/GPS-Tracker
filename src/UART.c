@@ -3,9 +3,9 @@
 
 void UART0_PORTA_Init(){         													 // function to initialize UART
 	SetBit(SYSCTL_RCGCUART_R,0);     												 // activate UART0
-	while(( GetBit(SYSCTL_PRUART_R,0)==0)); 										 // waiting for UART0 activation
-	//SYSCTL_RCGCGPIO_R |= 0x1;             										 // activate PORT A
-	//while((SYSCTL_PRGPIO_R & 0x1)==0) ;  											 // waiting for port A activation
+	//while(( GetBit(SYSCTL_PRUART_R,0)==0)); 										 // waiting for UART0 activation
+	SetBit(SYSCTL_RCGCGPIO_R ,0);             										 // activate PORT A
+	while((SYSCTL_PRGPIO_R & 0x1)==0) ;  											 // waiting for port A activation
 	ClearBit(UART0_CTL_R,0);              										     // disabling UART while initializing
 	UART0_IBRD_R = 520;                     										 // IBRD=int(80000000/(16*9600)) = int (520.8333) (divider for frequency)
 	UART0_FBRD_R = 53; 																 // FBRD int(0.8333 * 64 +0.5) 
@@ -19,9 +19,9 @@ void UART0_PORTA_Init(){         													 // function to initialize UART
 
 void UART1_PORTB_Init(){         													 // function to initialize UART1
 	SetBit(SYSCTL_RCGCUART_R,1);     											     // activate UART1
-	while(( GetBit(SYSCTL_PRUART_R,1)==0)); 										 // waiting for UART1 activation
-	//SYSCTL_RCGCGPIO_R |= 0x2;              										 // activate PORT A
-	//while((SYSCTL_PRGPIO_R & 0x2)==0) ;                                            // waiting for port A activation
+	//while(( GetBit(SYSCTL_PRUART_R,1)==0)); 										 // waiting for UART1 activation
+	SetBit(SYSCTL_RCGCGPIO_R,1);              										 // activate PORT A
+	while((SYSCTL_PRGPIO_R & 0x2)==0) ;                                              // waiting for port A activation
 	ClearBit(UART1_CTL_R,0);             										     // disabling UART while initializing
 	UART1_IBRD_R = 520;                    											 // IBRD=int(80000000/(16*9600)) = int (520.8333) (divider for frequency)
 	UART1_FBRD_R = 53; 																 // FBRD int(0.8333 * 64 +0.5) 

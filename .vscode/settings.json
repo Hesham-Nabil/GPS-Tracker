@@ -4,6 +4,7 @@
     "files.associations": {
         "math.h": "c",
         "math_functions.h": "c",
-        "stddef.h": "c"
+        "stddef.h": "c",
+        "commands.h": "c"
     }
 }
