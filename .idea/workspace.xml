@@ -12,7 +12,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3da3b5a0-c9bd-4b7b-8fe5-c06e077af9fb" name="Changes" comment="" />
+    <list default="true" id="3da3b5a0-c9bd-4b7b-8fe5-c06e077af9fb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/GPS_Reciever.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/GPS_Reciever.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +82,7 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "UART__DRIVER",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/hesha/OneDrive/Desktop/New folder/GPS-Tracker",
     "node.js.detected.package.eslint": "true",
@@ -141,6 +143,7 @@
       <workItem from="1713909140864" duration="5952000" />
       <workItem from="1713915246568" duration="48000" />
       <workItem from="1713959042764" duration="38000" />
+      <workItem from="1714241625564" duration="24000" />
     </task>
     <task id="LOCAL-00001" summary="moving the tm4 file">
       <option name="closed" value="true" />
