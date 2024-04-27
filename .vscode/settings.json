@@ -3,6 +3,7 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "math.h": "c",
-        "math_functions.h": "c"
+        "math_functions.h": "c",
+        "stddef.h": "c"
     }
 }
