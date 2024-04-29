@@ -22,7 +22,7 @@ void GPS_Start(double *Distance, double coordinates[300][2], char* buffer, int i
         const char *RMC = "$GPRMC";                           // match string
         const char *RMC_PTR = NULL;                           // "TO BE" address of the $ sign of the GPRMC
 
-        UART0_RECIEVE_DATA(buffer);                           // this function fills the buffer filled with the data and the garbage
+        UART1_RECIEVE_DATA(buffer);                           // this function fills the buffer filled with the data and the garbage
         RMC_PTR = strstr( buffer , RMC);                      // search for a needle ("$GPRMC") in a hay stack (buffer)
 
         if (RMC_PTR == NULL)
@@ -42,7 +42,7 @@ void GPS_Start(double *Distance, double coordinates[300][2], char* buffer, int i
         else
         continue;
     
-        if (i == 300)                                           //if i becomes too large exit the inf loop
+        if (i == 10)                                           //if i becomes too large exit the inf loop
         break;
 
         if (i==1)   
