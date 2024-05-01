@@ -71,10 +71,16 @@ void UART1_TRANSMIT_CHAR(char data){												 // UART1 function to send data
 }
 
 
-void UART1_RECIEVE_DATA(char* buffer){
-	for (int i = 0; i < 500; i++){
-    UART1_RECIEVE_CHAR(buffer + i);
+void UART1_RECIEVE_DATA(char *buffer){
+	for (int i = 0; i < 10; i++){
+    UART1_RECIEVE_CHAR(buffer+i);
+	for(int J=0;J<1000;J++ );
 	}
 }
-
-
+void UART0_RECIEVE_DATA(char *buffer)
+{
+	for (int i = 0; i < 10; i++){
+    UART0_RECIEVE_CHAR(buffer+i);
+	for(int J=0;J<1000;J++ );
+	}
+}

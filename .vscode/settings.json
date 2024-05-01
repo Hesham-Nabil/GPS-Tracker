@@ -6,6 +6,7 @@
         "math_functions.h": "c",
         "stddef.h": "c",
         "commands.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "tm4c123gh6pm.h": "c"
     }
 }
