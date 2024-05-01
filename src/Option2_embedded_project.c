@@ -1,6 +1,6 @@
 #include "tm4c123gh6pm.h"
 #include "option2_embedded_project"
-void RGBLED_Init(void){
+void RGBLED_Init(void){        //initializtion of GPIO
 SYSCTL_RCGCGPIO_R	|= PF_mask;
 while((SYSCTL_RCGCGPIO_R & 0x20)==0)
 GPIO_PORTF_LOCK_R = GPIO_LOCK_KEY;
