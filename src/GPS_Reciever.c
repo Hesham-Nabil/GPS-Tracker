@@ -14,7 +14,7 @@ const double Earth_Radius = 6371000;
         // int i = 0    
         // char buffer[500];                //initialize a buffer with size very very big to be certain that the data is recieved 
         //GPS_Start( &Distance,  coordinates, buffer,  i)    //how to call the functiuon in main
-
+  
 
 void GPS_Start(double *Distance, double coordinates[300][2], char* buffer, int i){                      // A function that parces the data after $GPRMC, and retrieve the data in variables
     while (1)
