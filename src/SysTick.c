@@ -19,6 +19,6 @@ while((NVIC_ST_CTRL_R&0x00010000)==0);                //wait for flag of count b
 void delay(unsigned long delay){
 unsigned long i;
 for(i=0; i<delay; i++){
-SysTick_Wait(800000);                                 // wait 10ms >>800000*12.5ns
+SysTick_Wait(160000);                                 // wait 10ms >>160000*12.5ns
 }
 }
