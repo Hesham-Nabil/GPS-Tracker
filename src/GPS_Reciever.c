@@ -53,7 +53,7 @@ void GPS_Start(double *Distance, double coordinates[300][2], char* buffer, int i
             double long2_rad = Torad(Todegree(coordinates[i-2][0]));
             double lat2_rad  = Torad(Todegree(coordinates[i-2][1]));
 
-            // calculate distance from haversine law
+            // calculate the distance from haversine law  
             double a = pow(sin((lat2_rad - lat1_rad) / 2), 2) + cos(lat1_rad) * cos(lat2_rad) * pow(sin((long2_rad - long1_rad) / 2), 2);
             double c = 2 * asin(sqrt(a));
             *Distance += Earth_Radius * c;                                                              // destance calculated
