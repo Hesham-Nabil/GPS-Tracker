@@ -29,7 +29,7 @@ GPIO_PORTF_PUR_R &= ~PF_SW1_mask;
 
 
 
-unsigned char SW1_Input(void){           //function to dedicate if SW1 is pressed
+unsigned char SW1_Input(void){              //function to dedicate if SW1 is pressed
 return GPIO_PORTF_DATA_R & PF_SW1_mask;           
 }
 
