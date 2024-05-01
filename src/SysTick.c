@@ -15,7 +15,7 @@ NVIC_ST_RELOAD_R = delay-1;                           //number of counts
 NVIC_ST_CURRENT_R = 0;                                //any value written to current clears
 while((NVIC_ST_CTRL_R&0x00010000)==0);                //wait for flag	
 }
-//////******DEALY fn wait for delay in 10 milliseconds*******/////////
+//////******DEALY fn wait for delay*10 milliseconds*******/////////
 void delay(unsigned long delay){
 unsigned long i;
 for(i=0; i<delay; i++){
