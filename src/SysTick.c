@@ -1,3 +1,5 @@
+#include "PortsDef.h"
+#include "Commands.h"
 // if 80MHZ not 16MHZ
 ////////********SYSTICK timer INITALIZATION******////////
 void SysTick_Init(void){
