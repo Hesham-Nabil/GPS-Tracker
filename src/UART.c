@@ -94,4 +94,4 @@ int UART1_RECIEVE_DATA(char* buffer,int length){
             break;
    }
    }
-}
+}//memset(buffer,0,length)

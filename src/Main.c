@@ -10,12 +10,16 @@ int main(void)
     UART1_PORTB_Init();
     LED_init();
     Switches_init();
+    SysTick_Init();
+    const int length = 300;
+    char buffer[length];
     while (1)
-    {
-        if (SW1_Input() == 1)
-        {
-            LED_ON();
-        }
-        LED_OFF();
+    { UART0_RECIEVE_DATA(&buffer,length);
+      delay(20);
+      for(int i =0 ; i<length;i++){
+      UART0_TRANSMIT_CHAR(buffer[i]);
+      }
+     memset(buffer,0,length);
+    
     }
 }
