@@ -33,14 +33,14 @@ char check_logname(void){
 
 void Get_array(char *Str_Of_Chars){
     char data = UART1_RECEIVE_CHAR();
-    int i = 6;                          //not taking "$GPRMC," with us
+    int i = 0;                          //not taking "$GPRMC," with us
     while (data!='*'){
         Str_Of_Chars[i] = data;
         data = UART1_RECEIVE_CHAR();
 
         i++;
     }                               //so we are now having the string of the characters 
-    Str_Of_Chars[strlen(input)] = '*';   //after that adding "*" again to the array and we will know why
+    Str_Of_Chars[strlen(Str_Of_Chars)] = '*';   //after that adding "*" again to the array and we will know why
 }                                   
 
 void Get_GPS_Data(const char *input, char elements[MAX_ROWS][MAX_COLS]) {
@@ -90,7 +90,15 @@ void GPS_Start(double *Distance, double coordinates[300][2], char* buffer, int i
         while (check_logname()); //wait for desired log name
         Get_array(buffer);
         char elements[MAX_ROWS][MAX_COLS] = {0};          // Define a 2-D array to store extracted elements
-        Get_GPS_Data(Str_Of_Chars);
+        Get_GPS_Data(Str_Of_Chars,elements);
+
+                                                                      //summing the chars in 1D array
+        int e = 0;
+        for(int g = 0 ; g < MAX_ROWS ; g++){
+            for(int q = 0 ; q < MAX_COLS ; q++){
+                elements[g]= elements[g][q] + e ;
+            }
+        }
         // now defining our parameters
         time  = float (elements[0]);
         status = char(elements[1]);
