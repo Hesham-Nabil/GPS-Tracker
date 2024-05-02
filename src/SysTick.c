@@ -22,6 +22,6 @@ void delay(unsigned long delay)
 	unsigned long i;
 	for (i = 0; i < delay; i++)
 	{
-		SysTick_Wait(800000); 				// wait 10ms >>10ms/12.5ns
+		SysTick_Wait(800000); 				// wait 10ms >>800000*12.5ns
 	}
 }
