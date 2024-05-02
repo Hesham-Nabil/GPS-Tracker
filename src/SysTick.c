@@ -1,6 +1,6 @@
 #include "tm4c123gh6pm.h"
 #include "Commands.h"
-// we will work on 80Mhz not 16Mhz
+// we will work on 16Mhz not 80Mhz
 ////////********SYSTICK timer INITALIZATION******////////
 void SysTick_Init(void)
 {
@@ -9,7 +9,7 @@ void SysTick_Init(void)
 	NVIC_ST_CURRENT_R = 0;		   				// 3) any write to CURRENT clears it
 	NVIC_ST_CTRL_R = 0x00000005;   					// 4) enable SysTick with core clock (101) bit no 2 for CLK-SRC and bit 0 for ENABLE
 }
-///////******wait in unit of 80MHZ (12.5ns)*****////////
+///////******wait in unit of 16MHZ (62.5ns)*****////////
 void SysTick_Wait(unsigned long delay)
 {
 	NVIC_ST_RELOAD_R = delay - 1; 				// number of counts
@@ -22,6 +22,6 @@ void delay(unsigned long delay)
 	unsigned long i;
 	for (i = 0; i < delay; i++)
 	{
-		SysTick_Wait(800000); 				// wait 10ms >>800000*12.5ns
+		SysTick_Wait(160000); 				// wait 10ms >>160000*62.5.5ns
 	}
 }
