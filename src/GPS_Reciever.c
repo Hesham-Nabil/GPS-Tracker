@@ -7,13 +7,13 @@
 #include "GPIO.h"
 const double Earth_Radius = 6371000;
 
-    //parsing function
-    // $GPRMC,161229.487,A,3723.2475,N,12158.3416,W,0.13,309.62,120598, ,*10
-    // double coordinates[300][2];      // this line should be written in main before GPS_Start() should be called
-    // double Distance=0;               // this line should be written in main before GPS_Start() should be called
-    // int i = 0    
-    // char buffer[500];                //initialize a buffer with size very very big to be certain that the data is recieved 
-    //GPS_Start( &Distance,  coordinates, buffer,  i)    //how to call the functiuon in main
+//parsing function
+// $GPRMC,161229.487,A,3723.2475,N,12158.3416,W,0.13,309.62,120598, ,*10
+// double coordinates[300][2];      // this line should be written in main before GPS_Start() should be called
+// double Distance=0;               // this line should be written in main before GPS_Start() should be called
+// int i = 0    
+// char buffer[500];                //initialize a buffer with size very very big to be certain that the data is recieved 
+//GPS_Start( &Distance,  coordinates, buffer,  i)    //how to call the functiuon in main
 
 
 void GPS_Start(double *Distance, double coordinates[300][2], char* buffer, int i){                      // A function that parces the data after $GPRMC, and retrieve the data in variables
