@@ -66,32 +66,30 @@ int UART1_RECIEVE_CHAR( char *destination)
 }
 
 void UART1_TRANSMIT_CHAR(char data){												 // UART1 function to send data
-	while( UART1_FR_R & 0X020 != 0 );												 // wait untill the buffer becomes empty to send data on the buffer
+	if( UART1_FR_R & 0X020 != 0 );												 // wait untill the buffer becomes empty to send data on the buffer
 	UART1_DR_R = data;																 // write data on the buffer
 }
 
 
-int UART0_RECIEVE_DATA(char* buffer,int length){
+void UART0_RECIEVE_DATA(char* buffer,int length){
 
     for (int i = 0; i < length; i++)
     {
         if (UART0_RECIEVE_CHAR(buffer+i))
-            i++;
+            continue;
         else{
-            return (int)i;
-            break;
+			i--;
    }
    }
 }
-int UART1_RECIEVE_DATA(char* buffer,int length){
+void UART1_RECIEVE_DATA(char* buffer,int length){
 
     for (int i = 0; i < length; i++)
     {
         if (UART1_RECIEVE_CHAR(buffer+i))
-            i++;
+            continue;
         else{
-            return (int)i;
-            break;
+			i--;
    }
    }
 }//memset(buffer,0,length)
