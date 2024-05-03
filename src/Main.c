@@ -14,12 +14,13 @@ int main(void)
     const int length = 300;
     char buffer[length];         
     while (1)                   
-    { UART1_RECIEVE_DATA(buffer,length);
+    { UART0_RECIEVE_DATA(buffer,length);
       delay(200);
-      for(int i =0 ; i<length;i++){
-      UART0_TRANSMIT_CHAR(buffer[i]);
-      }
-      UART0_TRANSMIT_CHAR('\n');
+      GPS_Start()
+    //   for(int i =0 ; i<length;i++){
+    //   UART0_TRANSMIT_CHAR(buffer[i]);
+    //   }
+    //   UART0_TRANSMIT_CHAR('\n');
     
     }
 }
