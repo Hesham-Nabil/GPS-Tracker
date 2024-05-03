@@ -12,14 +12,14 @@ int main(void)
     Switches_init();
     SysTick_Init();
     const int length = 300;
-    char buffer[length];
-    while (1)
-    { UART0_RECIEVE_DATA(&buffer,length);
-      delay(20);
+    char buffer[length];         
+    while (1)                   
+    { UART0_RECIEVE_DATA(buffer,length);
+      delay(200);
       for(int i =0 ; i<length;i++){
       UART0_TRANSMIT_CHAR(buffer[i]);
       }
-     memset(buffer,0,length);
+    memset(buffer,0,length);
     
     }
 }
