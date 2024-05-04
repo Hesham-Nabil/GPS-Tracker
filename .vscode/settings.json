@@ -8,6 +8,10 @@
         "commands.h": "c",
         "string.h": "c",
         "tm4c123gh6pm.h": "c",
-        "systick.h": "c"
+        "systick.h": "c",
+        "gps_reciever.h": "c",
+        "uart.h": "c",
+        "gpio.h": "c",
+        "stdio.h": "c"
     }
 }
