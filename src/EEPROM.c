@@ -6,15 +6,15 @@ int EepromTry()
 {  SetBit(SYSCTL_RCGCEEPROM_R ,0); // ACTIVATE CLOCK "PAGE559"
 	delay(10); // delay 100ms
 	while(GetBit(EEPROM_EEDONE_R,0));//estana l7d ma el working bit cleared
-		if((GitBit(EEPROM_EESUPP_R,3))  |(GitBit(EEPROM_EESUPP_R,2))) //page 567 PRETERY ERETRY BITS CHECK
+		if((GetBit(EEPROM_EESUPP_R,3))  |(GetBit(EEPROM_EESUPP_R,2))) //page 567 PRETERY ERETRY BITS CHECK
 		{
 			return 0;
 		}
 	SetBit(SYSCTL_SREEPROM_R,0) ;//Page 334 to reset software of eeprom
-	while(Getbit(SYSCTL_PREEPROM_R,0)^0X00) ; //PAGE 422,539
+	while(GetBit(SYSCTL_PREEPROM_R,0)^0X00) ; //PAGE 422,539
 	while(GetBit(EEPROM_EEDONE_R,0));
 	
-		if((GitBit(EEPROM_EESUPP_R,3))  |(GitBit(EEPROM_EESUPP_R,2))) //page 567 PRETERY ERETRY BITS CHECK
+		if((GetBit(EEPROM_EESUPP_R,3))  |(GetBit(EEPROM_EESUPP_R,2))) //page 567 PRETERY ERETRY BITS CHECK
 		{
 			return 0;
 		}

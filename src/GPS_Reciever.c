@@ -5,6 +5,7 @@
 #include <math.h>
 #include "Math_Functions.h"
 #include "GPIO.h"
+#include "Systick.h"
 const double Earth_Radius = 6371000;
 
 //parsing function
