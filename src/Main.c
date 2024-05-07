@@ -24,12 +24,30 @@ int main(void)
     int i = 0 ;  
     char x ;    
     char y ; 
+    char z;
+    char f;
     while (1)                   
 { UART0_RECIEVE_CHAR(&x);
     EepromWrite(x,0,0);
-    y=EepromRead(0,0);
-  UART0_TRANSMIT_CHAR(y);
-   
+  UART0_TRANSMIT_CHAR(EepromRead(0,0));
+  UART0_TRANSMIT_CHAR(EepromRead(0,1));
+  UART0_TRANSMIT_CHAR(EepromRead(0,2));
+  UART0_TRANSMIT_CHAR('1');
+  delay(1000); 
+  UART0_RECIEVE_CHAR(&x);
+    EepromWrite(x,0,1);
+  UART0_TRANSMIT_CHAR(EepromRead(0,0));
+  UART0_TRANSMIT_CHAR(EepromRead(0,1));
+  UART0_TRANSMIT_CHAR(EepromRead(0,2));
+  UART0_TRANSMIT_CHAR('2');
+  delay(1000); 
+  UART0_RECIEVE_CHAR(&x);
+    EepromWrite(x,0,2);
+    UART0_TRANSMIT_CHAR(EepromRead(0,0));
+  UART0_TRANSMIT_CHAR(EepromRead(0,1));
+  UART0_TRANSMIT_CHAR(EepromRead(0,2));
+  UART0_TRANSMIT_CHAR('3');
+  delay(1000); 
 
 }
 //    UART0_TRANSMIT_CHAR('1');
