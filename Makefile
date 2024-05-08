@@ -11,7 +11,7 @@ CFLAGS=-ggdb -D__NO_SYSTEM_INIT -D__START=main -mthumb -mcpu=cortex-m4 -mlittle-
 BUILD=build
 
 # OBJS is the list of object target files to compile
-OBJS=startup_ARMCM4.o  GPIO.o GPS_Reciever.o Main.o  UART.o Math_Functions.o SysTick.o EEPROM.o LCD.o 
+OBJS=startup_ARMCM4.o  GPIO.o GPS_Reciever.o Main.o  UART.o Math_Functions.o SysTick.o EEPROM.o LCD.o i2c.o 
 
 # Add library paths for compiler
 #CFLAGS+= -I$(DEVICE) -I$(CORE) -I$(PERIPH)/inc -Iinc/

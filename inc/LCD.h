@@ -1,6 +1,9 @@
-#ifndef _LCD_
-#define _LCD_
-
+#ifndef LCD
+#define LCD
+#include "i2c.h"
+#define LCD_1602_7_Bit_Address 0x27
+void LCD_1602_I2C_Init();
+void LCD_1602_I2C_Write(char * ptr);
 #define SET_LCD_DATA GPIO_PORTD_DIR_R
 #define SET_LCD_INST GPIO_PORTE_DIR_R
 #define LCD_DATA GPIO_PORTD_DATA_R
