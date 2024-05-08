@@ -55,10 +55,10 @@ UART0_TRANSMIT_CHAR('x');
         if (i==1)   
             continue;
             UART0_TRANSMIT_CHAR('8');
-            double long1_rad = Torad(Todegree(coordinates[i-1][0]));
-            double lat1_rad  = Torad(Todegree(coordinates[i-1][1]));
-            double long2_rad = Torad(Todegree(coordinates[i-2][0]));
-            double lat2_rad  = Torad(Todegree(coordinates[i-2][1]));
+            double long1_rad = Torad(coordinates[i-1][0]));
+            double lat1_rad  = Torad((coordinates[i-1][1]));
+            double long2_rad = Torad((coordinates[i-2][0]));
+            double lat2_rad  = Torad((coordinates[i-2][1]));
 
             // calculate the distance from haversine law  
             double a = pow(sin((lat2_rad - lat1_rad) / 2), 2) + cos(lat1_rad) * cos(lat2_rad) * pow(sin((long2_rad - long1_rad) / 2), 2);
