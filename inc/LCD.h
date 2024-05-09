@@ -25,5 +25,5 @@ void lcd_portE_INST_init(void);
 void lcd_init(void); //lcd initialization: 8 data pins in port D & first 3 pins in port E
 void lcd_data(char d); //display one character
 void lcd_str(const char *d); //display string
-
+void LCD_DISPLAY_FLOAT(double x);
 #endif

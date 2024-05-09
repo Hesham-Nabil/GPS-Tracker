@@ -39,11 +39,7 @@ int main(void)
       /////////////Displaying Distance///////////////
       LCD_1602_I2C_Write("Calculating..  ");
       delay(100);
-
-      int_part = ((int)distance);
-      fr_part = (distance - (int)distance) * 1000;
-      sprintf(LCD_output_buffer, "%d.%d", int_part, fr_part);
-      LCD_1602_I2C_Write(LCD_output_buffer);
+      LCD_DISPLAY_FLOAT(distance);
       delay(100);
 
       ///////////////Saving Distance/////////////////
