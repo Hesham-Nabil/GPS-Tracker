@@ -2,8 +2,6 @@
 #define PF123_mask 0xE
 #define PF_mask 0x20
 
-
-
 void UART0_Handler(void) {
     if (UART0_MIS_R & 0x10) { // Bit 4 corresponds to RX interrupt
         char receivedChar = UART0_DR_R;                                   // Read the received data
@@ -15,8 +13,6 @@ void UART0_Handler(void) {
         }
     }
 }
-
-
 
 
 
