@@ -30,8 +30,8 @@ void GPS_Start(double *Distance, double coordinates[2][2], char *buffer, int loo
         {
             if (status != 'A')
                 continue;
-            coordinates[i][0] = longitude; // longitude should be stored in the 1st column
-            coordinates[i][1] = latitude;  // lattitude should be stored in the 2nd column
+            coordinates[loop_counter][0] = longitude; // longitude should be stored in the 1st column
+            coordinates[loop_counter][1] = latitude;  // lattitude should be stored in the 2nd column
             loop_counter++;
         }
         else
@@ -40,10 +40,10 @@ void GPS_Start(double *Distance, double coordinates[2][2], char *buffer, int loo
         }
         if (loop_counter == 1)
             continue;
-        double long1_rad = Torad(Todegree(coordinates[i - 1][0]));
-        double lat1_rad = Torad(Todegree(coordinates[i - 1][1]));
-        double long2_rad = Torad(Todegree(coordinates[i - 2][0]));
-        double lat2_rad = Torad(Todegree(coordinates[i - 2][1]));
+        double long1_rad = Torad(Todegree(coordinates[loop_counter - 1][0]));
+        double lat1_rad = Torad(Todegree(coordinates[loop_counter - 1][1]));
+        double long2_rad = Torad(Todegree(coordinates[loop_counter - 2][0]));
+        double lat2_rad = Torad(Todegree(coordinates[loop_counter - 2][1]));
         // calculate the distance from haversine law
         double a = pow(sin((lat2_rad - lat1_rad) / 2), 2) + cos(lat1_rad) * cos(lat2_rad) * pow(sin((long2_rad - long1_rad) / 2), 2);
         double c = 2 * asin(sqrt(a));

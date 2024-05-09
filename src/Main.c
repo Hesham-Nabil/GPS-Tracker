@@ -21,6 +21,7 @@ int main(void)
    Switches_init();
    I2C_Init();
    LCD_1602_I2C_Init();
+   const int length = 300;
    double coordinates[3][2];
    double distance = 0;
    char buffer[length];
@@ -30,7 +31,7 @@ int main(void)
    int gps_loop_counter = 0;
    int address = 0;
    int block = 0;
-   const int length = 300;
+
    while (1)
    {
       GPS_Start(&distance, coordinates, buffer, gps_loop_counter);
@@ -42,7 +43,7 @@ int main(void)
       int_part = ((int)distance);
       fr_part = (distance - (int)distance) * 1000;
       sprintf(LCD_output_buffer, "%d.%d", int_part, fr_part);
-      LCD_1602_I2C_Write(output_buffer);
+      LCD_1602_I2C_Write(LCD_output_buffer);
       delay(100);
 
       ///////////////Saving Distance/////////////////
