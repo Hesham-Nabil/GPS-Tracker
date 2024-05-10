@@ -4,7 +4,7 @@ double Torad(double angle)
 {
 	return (angle * PI / 180);
 }
-double Todegree(double angle)
+double Todecimal(double angle)
 {
 	int degree = (int)angle / 100;
 	double minutes = angle - (double)degree * 100;

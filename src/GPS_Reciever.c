@@ -30,8 +30,8 @@ void GPS_Start(double *Distance, double coordinates[2][2], char *buffer, int loo
         {
             if (status != 'A')
                 continue;
-            coordinates[loop_counter][0] = Todegree(longitude); // longitude should be stored in the 1st column
-            coordinates[loop_counter][1] = Todegree(latitude);  // lattitude should be stored in the 2nd column
+            coordinates[loop_counter][0] = Todecimal(longitude); // longitude should be stored in the 1st column
+            coordinates[loop_counter][1] = Todecimal(latitude);  // lattitude should be stored in the 2nd column
             loop_counter++;
         }
         else
