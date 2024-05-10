@@ -1,6 +1,4 @@
 #include "tm4c123gh6pm.h"
-#define PF123_mask 0xE
-#define PF_mask 0x20
 
 void UART0_Handler(void) {
     if (UART0_MIS_R & 0x10) { // Bit 4 corresponds to RX interrupt

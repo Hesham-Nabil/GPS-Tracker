@@ -24,7 +24,7 @@ void UART1_PORTB_Init()
   SetBit(SYSCTL_RCGCUART_R, 1); // activate UART1
   while ((GetBit(SYSCTL_PRUART_R, 1) == 0))
     ;                           // waiting for UART1 activation
-  SetBit(SYSCTL_RCGCGPIO_R, 1); // activate PORT A
+  SetBit(SYSCTL_RCGCGPIO_R, 1); // activate PORT B
   while ((SYSCTL_PRGPIO_R & 0x2) == 0)
     ;                                                                // waiting for port A activation
   ClearBit(UART1_CTL_R, 0);                                          // disabling UART while initializing
