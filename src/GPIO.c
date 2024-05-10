@@ -32,6 +32,18 @@ void LED_ON()
 {
 	SetReg(GPIO_PORTF_DATA_R, 0X0E); // ON LEDS
 }
+void LED_RED_ON()
+{
+	SetBit(GPIO_PORTF_DATA_R,1); // ON LEDS
+}
+void LED_Green_ON()
+{
+	SetBit(GPIO_PORTF_DATA_R,3); // ON LEDS
+}
+void LED_Blue_ON()
+{
+	SetBit(GPIO_PORTF_DATA_R,2); // ON LEDS
+}
 void LED_OFF()
 {
 	ClearReg(GPIO_PORTF_DATA_R, 0X0E); // OFF LEDS
