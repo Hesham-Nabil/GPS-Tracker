@@ -1,7 +1,6 @@
 #include "GPIO.h"
 #include "tm4c123gh6pm.h"
 #include "Commands.h"
-
 void GPIO_PortF_Init()
 {
 	SetBit(SYSCTL_RCGCGPIO_R, 5); // SET BIT OF PORT CLOCK
@@ -17,6 +16,7 @@ void GPIO_PortF_Init()
 	ClearReg(GPIO_PORTF_PUR_R, 0XFF);	// CLEAR PUR REG
 	ClearReg(GPIO_PORTF_DATA_R, 0xFF);	// CLEAR DATA REG
 }
+
 void LED_init()
 {
 	SetReg(GPIO_PORTF_DEN_R, 0X0E); // DIGITAL ENABLE  3 LEDS

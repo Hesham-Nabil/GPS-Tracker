@@ -7,8 +7,7 @@ void UART0_PORTA_Init()
   while ((GetBit(SYSCTL_PRUART_R, 0) == 0))
     ;                           // waiting for UART0 activation
   SetBit(SYSCTL_RCGCGPIO_R, 0); // activate PORT A
-  while ((SYSCTL_PRGPIO_R & 0x1) == 0)
-    ;                                                                // waiting for port A activation
+  while ((SYSCTL_PRGPIO_R & 0x1) == 0);                                                                // waiting for port A activation
   ClearBit(UART0_CTL_R, 0);                                          // disabling UART while initializing
   UART0_IBRD_R = 104;                                                // IBRD=int(16000000/(16*9600)) = int (104.16667) (divider for frequency)
   UART0_FBRD_R = 11;                                                 // FBRD int(0.16667 * 64 +0.5)
@@ -117,4 +116,4 @@ void UART1_RECIEVE_DATA(char *buffer, int length)
       i--;
     }
   }
-} // memset(buffer,0,length)
+} 
