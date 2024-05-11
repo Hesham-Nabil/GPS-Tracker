@@ -44,8 +44,8 @@ int main(void)
    GPIO_PORTA_IS_R &= ~1;                            // edge sensitivity for PA0 (U0RX)
    GPIO_PORTA_IBE_R &= ~0X1;                         // controlled by IEV
    GPIO_PORTA_IEV_R &= ~0X1;                         // falling edge
-   GPIO_PORTA_IM_R |= 0X1;                           // enable interrupt for PA0
-   NVIC_EN0_R |= 0X0;                                // Enable interrupt number 0 (UART0)
+   GPIO_PORTA_IM_R |= 0x30;                           // enable interrupt for PA0
+   NVIC_EN0_R |= (1<<5);                                // Enable interrupt number 0 (UART0)
    NVIC_PRI0_R |= (NVIC_PRI0_R & 0xFFFFFF00) | 0x01; // Set priority level 1 for UART0 interrupt
    //__enable_irq();      must be written in assembly            // Enable interrupts globally
    ///////////////////////////////////////////////////////////////////
