@@ -47,7 +47,7 @@ int main(void)
    GPIO_PORTA_IM_R |= 0X1;                           // enable interrupt for PA0
    NVIC_EN0_R |= 0X0;                                // Enable interrupt number 0 (UART0)
    NVIC_PRI0_R |= (NVIC_PRI0_R & 0xFFFFFF00) | 0x01; // Set priority level 1 for UART0 interrupt
-   __enable_irq();                                   // Enable interrupts globally
+   //__enable_irq();      must be written in assembly            // Enable interrupts globally
    ///////////////////////////////////////////////////////////////////
    SysTick_Init();
    GPIO_PortF_Init();
