@@ -21,7 +21,7 @@ void GPIOA_Handler()
    {
       if (UART0_RECIEVE_CHAR == 'U' | 'u')
       {
-         GPIO_PORTA_ICR_R |= 0X1;    //acknowledge
+         GPIO_PORTA_ICR_R |= 0X1; // acknowledge
          double memRead = 0;
          int fr_part = 0;
          int int_part = 0;
@@ -44,10 +44,10 @@ int main(void)
    GPIO_PORTA_IS_R &= ~1;                            // edge sensitivity for PA0 (U0RX)
    GPIO_PORTA_IBE_R &= ~0X1;                         // controlled by IEV
    GPIO_PORTA_IEV_R &= ~0X1;                         // falling edge
-   GPIO_PORTA_IM_R |= 0x30;                           // enable interrupt for PA0
-   NVIC_EN0_R |= (1<<5);                                // Enable interrupt number 0 (UART0)
+   GPIO_PORTA_IM_R |= 0x30;                          // enable interrupt for PA0
+   NVIC_EN0_R |= (1 << 5);                           // Enable interrupt number 0 (UART0)
    NVIC_PRI0_R |= (NVIC_PRI0_R & 0xFFFFFF00) | 0x01; // Set priority level 1 for UART0 interrupt
-   //__enable_irq();      must be written in assembly            // Enable interrupts globally
+   __asm { cpsie i }                                   // Enable interrupts globally
    ///////////////////////////////////////////////////////////////////
    SysTick_Init();
    GPIO_PortF_Init();
@@ -79,7 +79,7 @@ int main(void)
       }
       while (flag)
       {
-        
+
          GPS_Start(&distance, coordinates, buffer, gps_loop_counter);
          /////////////Displaying Distance///////////////
          LCD_1602_I2C_Write("Calculating..  ");
@@ -90,7 +90,7 @@ int main(void)
          ///////////////Saving Distance/////////////////
          LCD_1602_I2C_Write("Saving..  ");
          delay(100);
-         if (Mem_Address < 16 )
+         if (Mem_Address < 16)
          {
             EepromWrite(coordinates[0][0] * 100000, Mem_Address, Mem_Block);
             EepromWrite(coordinates[0][1] * 100000, ++Mem_Address, Mem_Block);
@@ -108,7 +108,6 @@ int main(void)
       }
    }
 }
-
 
 // double memRead = 0;
 //          int fr_part = 0;
