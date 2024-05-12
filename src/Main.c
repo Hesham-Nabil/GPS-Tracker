@@ -15,19 +15,21 @@
 
 ////////////////////////////////////
 
-// void UART0_Handler()
-// {
-//    if (GetBit(UART0_MIS_R, 4)){
-//       UART0_TRANSMIT_CHAR('2');
-//       SetBit(UART0_ICR_R, 4);
-//       char d;
-//       UART0_RECIEVE_CHAR(&d);
-//       if (d == 'U' | 'u')
-//       {
-//          UART0_TRANSMIT_CHAR('a');
-//       }
-//    }
-// }
+void UART0_Handler()
+{
+   UART0_TRANSMIT_CHAR('1');
+   if (GetBit(UART0_MIS_R, 4))
+   {
+      UART0_TRANSMIT_CHAR('2');
+      SetBit(UART0_ICR_R, 4);
+      char d;
+      UART0_RECIEVE_CHAR(&d);
+      if (d == 'U' | 'u')
+      {
+         UART0_TRANSMIT_CHAR('a');
+      }
+   }
+}
 // acknowledge
 //       double memRead = 0;
 //       int fr_part = 0;
@@ -51,54 +53,22 @@
 //       }
 //    }
 // }
-void UART0_Init(void) {
-    SYSCTL_RCGCUART_R |= 0x01;      // Enable UART0 clock
-    SYSCTL_RCGCGPIO_R |= 0x01;      // Enable GPIO Port A clock
-    UART0_CTL_R &= ~0x01;           // Disable UART0 to make changes
-
-    UART0_IBRD_R = 104;             // Set integer part of baud rate divisor
-    UART0_FBRD_R = 11;              // Set fractional part of baud rate divisor
-
-    UART0_LCRH_R = 0x70;            // 8-bit word length, enable FIFO
-    UART0_CTL_R |= 0x301;           // Enable UART0, RXE, and interrupt
-
-    NVIC_EN0_R |= (1 << 5);         // Enable UART0 interrupt
-}
-
-void LED_Init(void) {
-    SYSCTL_RCGCGPIO_R |= 0x20;      // Enable GPIO Port F clock
-    GPIO_PORTF_DIR_R |= 0x02;       // Set PF1 as output
-    GPIO_PORTF_DEN_R |= 0x02;       // Enable digital function for PF1
-}
-
-void UART0_Handler(void) {
-    GPIO_PORTF_DATA_R |= 0x02;      // Turn on the LED (red)
-
-    // Clear the interrupt and read the received character
-    volatile char data = UART0_DR_R;
-    UART0_ICR_R = 0x10;
-
-    // Process the received character as needed
-
-    GPIO_PORTF_DATA_R &= ~0x02;     // Turn off the LED (red)
-}
 
 int main(void)
 {
-   
-   // UART0_PORTA_Init();
-   // ///////////////////////////Enabling Interrupts/////////////////////
-   // SetBit(UART0_IM_R, 4);                                // enable interrupt for PA0
-   // NVIC_EN0_R |= (1 << 5);                               // Enable interrupt number 0 (UART0)
-   // NVIC_PRI1_R |= (NVIC_PRI0_R & 0xFFFF00FF) | (1 << 5); // Set priority level 1 for UART0 interrupt
-   // GPIO_PORTA_IS_R = ~0X03;
-   // GPIO_PORTA_IBE_R = ~0X03;
-   // GPIO_PORTA_IEV_R = ~0X03;
-   // GPIO_PORTA_IM_R = ~0X03;
-   // NVIC_PRI0_R |= (1 << 6);
-   // NVIC_EN0_R |= 1;
-   // UART0_IFLS_R = 0;
-   // __asm("cpsie i");                         // Enable interrupts globally
+   UART0_PORTA_Init();
+   ///////////////////////////Enabling Interrupts/////////////////////
+   SetBit(UART0_IM_R, 4);                                // enable interrupt for PA0
+   NVIC_EN0_R |= (1 << 5);                               // Enable interrupt number 0 (UART0)
+   NVIC_PRI1_R |= (NVIC_PRI0_R & 0xFFFF00FF) | (1 << 5); // Set priority level 1 for UART0 interrupt
+   GPIO_PORTA_IS_R = ~0X03;
+   GPIO_PORTA_IBE_R = ~0X03;
+   GPIO_PORTA_IEV_R = ~0X03;
+   GPIO_PORTA_IM_R = ~0X03;
+   NVIC_PRI0_R |= (1 << 6);
+   NVIC_EN0_R |= 1;
+   UART0_IFLS_R = 0;
+   __asm("cpsie i");
    ///////////////////////////////////////////////////////////////////
    SysTick_Init();
    GPIO_PortF_Init();
