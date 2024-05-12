@@ -34,6 +34,8 @@
 //       }
 //    }
 // }
+//UART1_RECIEVE_CHAR(&x);
+//UART0_TRANSMIT_CHAR(x);
 
 int main(void)
 {
@@ -135,17 +137,3 @@ int main(void)
       }
    }
 }
-// double memRead = 0;
-//          int fr_part = 0;
-//          int int_part = 0;
-// memRead = EepromRead(i, j) / 100000.0;
-//                int_part = ((int)memRead);
-//                fr_part = (memRead - (int)memRead) * 1000000;
-//                sprintf(output_buffer, "(%d.%d,", int_part, fr_part);
-//                UART0_TRANSMIT_DATA(LCD_output_buffer, 9);
-//                memRead = EepromRead(++i, j) / 100000.0;
-//                int_part = ((int)memRead);
-//                fr_part = (memRead - (int)memRead) * 100000;
-//                sprintf(output_buffer, "-%d.%d)", int_part, fr_part);
-//                UART0_TRANSMIT_DATA(LCD_output_buffer, 10);
-//                Uart0_Transmit_CHAR('\n');
