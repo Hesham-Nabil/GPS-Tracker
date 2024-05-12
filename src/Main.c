@@ -11,31 +11,6 @@
 #include "i2c.h"
 #include "Commands.h"
 
-/// Global Variables ////////////////
-
-////////////////////////////////////
-
-void UART0_Handler()
-{
-   UART0_TRANSMIT_CHAR('1');
-   if (GetBit(UART0_MIS_R, 4))
-   {
-      UART0_TRANSMIT_CHAR('2');
-      SetBit(UART0_ICR_R, 4);
-      char d;
-      UART0_RECIEVE_CHAR(&d);
-      if (d == 'U' | 'u')
-      {
-         UART0_TRANSMIT_CHAR('a');
-      }
-   }
-}
-void GPIOF_Handler(){
-      if (GPIO_PORTF_MIS_R & 0X01){
-         GPIO_PORTF_DATA_R ^= 0x1;
-         GPIO_PORTF_ICR_R |= 0X01;
-      }
-}
 // acknowledge
 //       double memRead = 0;
 //       int fr_part = 0;
@@ -62,30 +37,6 @@ void GPIOF_Handler(){
 
 int main(void)
 {
-   UART0_PORTA_Init();
-   ///////////////////////////Enabling Interrupts/////////////////////
-   SetBit(UART0_IM_R, 4);                                // enable interrupt for PA0
-   NVIC_EN0_R |= (1 << 5);                               // Enable interrupt number 0 (UART0)
-   NVIC_PRI1_R |= (NVIC_PRI0_R & 0xFFFF00FF) | (1 << 5); // Set priority level 1 for UART0 interrupt
-   GPIO_PORTA_IS_R = ~0X03;
-   GPIO_PORTA_IBE_R = ~0X03;
-   GPIO_PORTA_IEV_R = ~0X03;
-   GPIO_PORTA_IM_R = ~0X03;
-   NVIC_PRI0_R |= (1 << 6);
-   NVIC_EN0_R |= 1;
-   UART0_IFLS_R = 0;
-   __asm("cpsie i");
-   ///////////////////////////////////////////////////////////////////
-   GPIO_PORTF_IS_R = ~0X11;
-   GPIO_PORTF_IBE_R = ~0X11;
-   GPIO_PORTF_IEV_R = ~0X11;
-   GPIO_PORTF_IM_R = 0X11;
-   NVIC_PRI7_R |= 0X00200000;
-   NVIC_EN0_R |= 0X40000000;
-   ///////////////////////////////////////////////////////////////////
-   
-   UART0_IM_R |= (1 << 4);
-   NVIC_EN0_R |= (1 << 5);
    SysTick_Init();
    GPIO_PortF_Init();
    UART1_PORTB_Init();
@@ -106,49 +57,47 @@ int main(void)
    int flag = 0;
    while (1)
    {
-      UART0_TRANSMIT_CHAR('b');
+      
+      LED_OFF();
+      LED_RED_ON();
+      if (SW1_Input() == 1)
+      {
+         flag = 1;
+         LED_OFF();
+         LED_Green_ON();
+         int Mem_Address = 0;
+         int Mem_Block = 0;
+      }
+      while (flag)
+      {
+         EepromWrite(Mem_Address, 14, 31);
+         EepromWrite(Mem_Block, 15, 31);
+         GPS_Start(&distance, coordinates, buffer, gps_loop_counter);
+         /////////////Displaying Distance///////////////
+         LCD_1602_I2C_Write("Calculating..  ");
+         delay(100);
+         LCD_DISPLAY_FLOAT(distance);
+         delay(100);
+         ///////////////Saving Distance/////////////////
+         LCD_1602_I2C_Write("Saving..  ");
+         delay(100);
+         if (Mem_Address < 16)
+         {
+            EepromWrite(coordinates[0][0] * 100000, Mem_Address, Mem_Block);
+            EepromWrite(coordinates[0][1] * 100000, ++Mem_Address, Mem_Block);
+            EepromWrite(coordinates[1][0] * 100000, ++Mem_Address, Mem_Block);
+            EepromWrite(coordinates[1][1] * 100000, ++Mem_Address, Mem_Block);
+            Mem_Address++;
+         }
+         else if (Mem_Block < 32)
+         {
+            Mem_Block++;
+            Mem_Address = 0;
+         }
+         else
+            break;
+      }
    }
-
-   //    LED_OFF();
-   //    LED_RED_ON();
-   //    if (SW1_Input() == 1)
-   //    {
-   //       flag = 1;
-   //       LED_OFF();
-   //       LED_Green_ON();
-   //       int Mem_Address = 0;
-   //       int Mem_Block = 0;
-   //    }
-   //    while (flag)
-   //    {
-
-   //       GPS_Start(&distance, coordinates, buffer, gps_loop_counter);
-   //       /////////////Displaying Distance///////////////
-   //       LCD_1602_I2C_Write("Calculating..  ");
-   //       delay(100);
-   //       LCD_DISPLAY_FLOAT(distance);
-   //       delay(100);
-
-   //       ///////////////Saving Distance/////////////////
-   //       LCD_1602_I2C_Write("Saving..  ");
-   //       delay(100);
-   //       if (Mem_Address < 16)
-   //       {
-   //          EepromWrite(coordinates[0][0] * 100000, Mem_Address, Mem_Block);
-   //          EepromWrite(coordinates[0][1] * 100000, ++Mem_Address, Mem_Block);
-   //          EepromWrite(coordinates[1][0] * 100000, ++Mem_Address, Mem_Block);
-   //          EepromWrite(coordinates[1][1] * 100000, ++Mem_Address, Mem_Block);
-   //          Mem_Address++;
-   //       }
-   //       else if (Mem_Block < 32)
-   //       {
-   //          Mem_Block++;
-   //          Mem_Address = 0;
-   //       }
-   //       else
-   //          break;
-   //    }
-   // }
 }
 
 // double memRead = 0;

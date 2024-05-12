@@ -184,62 +184,62 @@
 //         i++;
 //     }
 // }
-#include "tm4c123gh6pm.h"
-#include "UART.h"
-#include "GPS_Reciever.h"
-#include "GPIO.h"
-#include "Systick.h"
-#include "EEPROM.h"
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include "LCD.h"
-#include "i2c.h"
+// #include "tm4c123gh6pm.h"
+// #include "UART.h"
+// #include "GPS_Reciever.h"
+// #include "GPIO.h"
+// #include "Systick.h"
+// #include "EEPROM.h"
+// #include <stdlib.h>
+// #include <string.h>
+// #include <stdio.h>
+// #include "LCD.h"
+// #include "i2c.h"
 
-int main(void)
-{
-   SysTick_Init();
-   GPIO_PortF_Init();
-   UART0_PORTA_Init();
-   UART1_PORTB_Init();
-   EepromInit();
-   LED_init();
-   Switches_init();
-   I2C_Init();
-   LCD_1602_I2C_Init();
-   const int length = 300;
-   double coordinates[3][2];
-   double distance = 0;
-   char buffer[length];
-   char LCD_output_buffer[16] = {};
-   char output_buffer[16] = {};
-   int fr_part = 0;
-   int int_part = 0;
-   int gps_loop_counter = 0;
-   int address = 0;
-   int block = 0;
-   int flag = 0;
-   double rec = 0;
-   char x;
-   while (1)
-   {
-      //    UART1_RECIEVE_CHAR(&x);
-      //    UART0_TRANSMIT_CHAR(x);
-      // }
-      EepromWrite(30.167437 * 100000, address, block);
-      rec = EepromRead(address, block) / 100000.0;
-      int_part = ((int)rec);
-      fr_part = (rec - (int)rec) * 100000;
-      sprintf(output_buffer, "(%d.%d,", int_part, fr_part);
-      UART0_TRANSMIT_DATA(output_buffer, 9);
-      EepromWrite(31.164723 * 100000, ++address, block);
-      int_part = ((int)rec);
-      fr_part = (rec - (int)rec) * 100000;
-      sprintf(output_buffer, "-%d.%d)", int_part, fr_part);
-      UART0_TRANSMIT_DATA(output_buffer, 10);
-      UART0_TRANSMIT_CHAR('\n');
-   }
-}
+// int main(void)
+// {
+//    SysTick_Init();
+//    GPIO_PortF_Init();
+//    UART0_PORTA_Init();
+//    UART1_PORTB_Init();
+//    EepromInit();
+//    LED_init();
+//    Switches_init();
+//    I2C_Init();
+//    LCD_1602_I2C_Init();
+//    const int length = 300;
+//    double coordinates[3][2];
+//    double distance = 0;
+//    char buffer[length];
+//    char LCD_output_buffer[16] = {};
+//    char output_buffer[16] = {};
+//    int fr_part = 0;
+//    int int_part = 0;
+//    int gps_loop_counter = 0;
+//    int address = 0;
+//    int block = 0;
+//    int flag = 0;
+//    double rec = 0;
+//    char x;
+//    while (1)
+//    {
+//       //    UART1_RECIEVE_CHAR(&x);
+//       //    UART0_TRANSMIT_CHAR(x);
+//       // }
+//       EepromWrite(30.167437 * 100000, address, block);
+//       rec = EepromRead(address, block) / 100000.0;
+//       int_part = ((int)rec);
+//       fr_part = (rec - (int)rec) * 100000;
+//       sprintf(output_buffer, "(%d.%d,", int_part, fr_part);
+//       UART0_TRANSMIT_DATA(output_buffer, 9);
+//       EepromWrite(31.164723 * 100000, ++address, block);
+//       int_part = ((int)rec);
+//       fr_part = (rec - (int)rec) * 100000;
+//       sprintf(output_buffer, "-%d.%d)", int_part, fr_part);
+//       UART0_TRANSMIT_DATA(output_buffer, 10);
+//       UART0_TRANSMIT_CHAR('\n');
+//    }
+// }
 
 //      EepromWrite(30.167437 * 100000, address, block);
 //        rec = EepromRead(address, block) / 100000.0;
@@ -310,3 +310,26 @@ int main(void)
 //       flag = 0;
 //    }
 // }
+
+
+   // UART0_PORTA_Init();
+   // ///////////////////////////Enabling Interrupts/////////////////////
+   // SetBit(UART0_IM_R, 4);                                // enable interrupt for PA0
+   // NVIC_EN0_R |= (1 << 5);                               // Enable interrupt number 0 (UART0)
+   // NVIC_PRI1_R |= (NVIC_PRI0_R & 0xFFFF00FF) | (1 << 5); // Set priority level 1 for UART0 interrupt
+   // GPIO_PORTA_IS_R = ~0X03;
+   // GPIO_PORTA_IBE_R = ~0X03;
+   // GPIO_PORTA_IEV_R = ~0X03;
+   // GPIO_PORTA_IM_R = ~0X03;
+   // NVIC_PRI0_R |= (1 << 6);
+   // NVIC_EN0_R |= 1;
+   // UART0_IFLS_R = 0;
+   // __asm("cpsie i");
+   // ///////////////////////////////////////////////////////////////////
+   // GPIO_PORTF_IS_R = ~0X11;
+   // GPIO_PORTF_IBE_R = ~0X11;
+   // GPIO_PORTF_IEV_R = ~0X11;
+   // GPIO_PORTF_IM_R = 0X11;
+   // NVIC_PRI7_R |= 0X00200000;
+   // NVIC_EN0_R |= 0X40000000;
+   // ///////////////////////////////////////////////////////////////////
