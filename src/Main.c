@@ -30,6 +30,12 @@ void UART0_Handler()
       }
    }
 }
+void GPIOF_Handler(){
+      if (GPIO_PORTF_MIS_R & 0X01){
+         GPIO_PORTF_DATA_R &= LED_Blue_ON;
+         GPIO_PORTF_ICR_R |= 0X01;
+      }
+}
 // acknowledge
 //       double memRead = 0;
 //       int fr_part = 0;
@@ -60,6 +66,8 @@ int main(void)
    ///////////////////////////Enabling Interrupts/////////////////////
    SetBit(UART0_IM_R, 4);                                // enable interrupt for PA0
    NVIC_EN0_R |= (1 << 5);                               // Enable interrupt number 0 (UART0)
+   NVIC_PRI1_R |= (NVIC_PRI0_R & 0xFFFF00FF) | (1 << 5); // Set priority level 1 for UART0 interrupt
+   GPIO_PORTA_IS_R = ~0X03;
    GPIO_PORTA_IBE_R = ~0X03;
    GPIO_PORTA_IEV_R = ~0X03;
    GPIO_PORTA_IM_R = ~0X03;
@@ -68,6 +76,16 @@ int main(void)
    UART0_IFLS_R = 0;
    __asm("cpsie i");
    ///////////////////////////////////////////////////////////////////
+   GPIO_PORTF_IS_R = ~0X11;
+   GPIO_PORTF_IBE_R = ~0X11;
+   GPIO_PORTF_IEV_R = ~0X11;
+   GPIO_PORTF_IM_R = 0X11;
+   NVIC_PRI7_R |= 0X00200000;
+   NVIC_EN0_R |= 0X40000000;
+   ///////////////////////////////////////////////////////////////////
+   
+   UART0_IM_R |= (1 << 4);
+   NVIC_EN0_R |= (1 << 5);
    SysTick_Init();
    GPIO_PortF_Init();
    UART1_PORTB_Init();
