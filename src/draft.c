@@ -237,6 +237,7 @@ int main(void)
       fr_part = (rec - (int)rec) * 100000;
       sprintf(output_buffer, "-%d.%d)", int_part, fr_part);
       UART0_TRANSMIT_DATA(output_buffer, 10);
+      UART0_TRANSMIT_CHAR('\n');
    }
 }
 
