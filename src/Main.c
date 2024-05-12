@@ -71,15 +71,15 @@ int main(void)
    {
       LED_OFF();
       LED_RED_ON();
-      if (SW1_Input() == '1')
+      if (SW1_Input() == 1)
       {
          flag = 1;
-         break;
+         LED_OFF();
+         LED_Green_ON();
       }
       while (flag)
       {
-         LED_OFF();
-         LED_Green_ON();
+        
          GPS_Start(&distance, coordinates, buffer, gps_loop_counter);
          /////////////Displaying Distance///////////////
          LCD_1602_I2C_Write("Calculating..  ");
@@ -90,7 +90,7 @@ int main(void)
          ///////////////Saving Distance/////////////////
          LCD_1602_I2C_Write("Saving..  ");
          delay(100);
-         if (Mem_Address < 16)
+         if (Mem_Address < 16 )
          {
             EepromWrite(coordinates[0][0] * 100000, Mem_Address, Mem_Block);
             EepromWrite(coordinates[0][1] * 100000, ++Mem_Address, Mem_Block);
