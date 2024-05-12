@@ -81,6 +81,7 @@ int main(void)
          ///////////////Saving Distance/////////////////
          LCD_1602_I2C_Write("Saving..  ");
          delay(100);
+         
          if (Mem_Address < 16) //& SW2_Input() == 1
          {
             if (Mem_Block == 31 && (Mem_Address == 14))
