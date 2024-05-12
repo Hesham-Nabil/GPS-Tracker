@@ -61,16 +61,14 @@ int main(void)
    SetBit(UART0_IM_R, 4);                                // enable interrupt for PA0
    NVIC_EN0_R |= (1 << 5);                               // Enable interrupt number 0 (UART0)
    NVIC_PRI1_R |= (NVIC_PRI0_R & 0xFFFF00FF) | (1 << 5); // Set priority level 1 for UART0 interrupt
-   GPIO_PORTA_IS_R = ~0X03;
-   GPIO_PORTA_IBE_R = ~0X03;
+   GPIO_PORTA_IS_R &= ~0x03;  // Set edge-sensitive interrupt
+   GPIO_PORTA_IBE_R |= 0x03;  // Enable interrupts on both edges
    GPIO_PORTA_IEV_R = ~0X03;
    GPIO_PORTA_IM_R = ~0X03;
    NVIC_PRI0_R |= (1 << 6);
    NVIC_EN0_R |= 1;
    UART0_IFLS_R = 0;
-   __asm(
-       "cpsie i");
-   // must be written in assembly            // Enable interrupts globally
+   __asm("cpsie i");                         // Enable interrupts globally
    ///////////////////////////////////////////////////////////////////
    SysTick_Init();
    GPIO_PortF_Init();
