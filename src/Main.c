@@ -60,8 +60,6 @@ int main(void)
    ///////////////////////////Enabling Interrupts/////////////////////
    SetBit(UART0_IM_R, 4);                                // enable interrupt for PA0
    NVIC_EN0_R |= (1 << 5);                               // Enable interrupt number 0 (UART0)
-   NVIC_PRI1_R |= (NVIC_PRI0_R & 0xFFFF00FF) | (1 << 5); // Set priority level 1 for UART0 interrupt
-   GPIO_PORTA_IS_R = ~0X03;
    GPIO_PORTA_IBE_R = ~0X03;
    GPIO_PORTA_IEV_R = ~0X03;
    GPIO_PORTA_IM_R = ~0X03;
