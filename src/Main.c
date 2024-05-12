@@ -32,7 +32,7 @@ void UART0_Handler()
 }
 void GPIOF_Handler(){
       if (GPIO_PORTF_MIS_R & 0X01){
-         GPIO_PORTF_DATA_R &= LED_Blue_ON;
+         GPIO_PORTF_DATA_R &= 0x1;
          GPIO_PORTF_ICR_R |= 0X01;
       }
 }
