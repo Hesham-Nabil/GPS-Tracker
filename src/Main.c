@@ -81,8 +81,8 @@ int main(void)
          ///////////////Saving Distance/////////////////
          LCD_1602_I2C_Write("Saving..  ");
          delay(100);
-         
-         if (Mem_Address < 16) //& SW2_Input() == 1
+
+         if (Mem_Address < 16 && SW2_Input() == 0) //& SW2_Input() == 1
          {
             if (Mem_Block == 31 && (Mem_Address == 14))
             {
@@ -99,7 +99,7 @@ int main(void)
             EepromWrite(Mem_Address, 14, 31);
             Mem_Address++;
          }
-         else if (Mem_Block < 32)
+         else if (Mem_Block < 32 && SW2_Input() == 0)
          {
             Mem_Block++;
             Mem_Address = 0;
