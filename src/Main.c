@@ -11,10 +11,13 @@
 #include "i2c.h"
 #include "Commands.h"
 void UART0_IRQHandler()
-{
+{ SetBit(UART0_ICR_R, 4);
+char x;
+  UART0_RECIEVE_CHAR(&x);
+  if(x=='u'||x=='U'){
   UART0_TRANSMIT_CHAR('1');
   delay(100);
-  SetBit(UART0_ICR_R, 4);
+  
   int max_block = EepromRead(15, 31);
   int max_address = EepromRead(14, 31);
   double memRead = 0;
@@ -37,7 +40,7 @@ void UART0_IRQHandler()
       UART0_TRANSMIT_DATA(output_buffer, 10);
       UART0_TRANSMIT_CHAR('\n');
     }
-  }
+  }}
 }
 int main(void)
 {
