@@ -76,10 +76,10 @@ __isr_vector:
 .long	__StackTop            /* Top of Stack */
 .long	Reset_Handler         /* Reset Handler */
 .long	NMI_Handler           /* NMI Handler */
-.long	HardFault_Handler     /* Hard Fault Handler */
-.long	MemManage_Handler     /* MPU Fault Handler */
-.long	BusFault_Handler      /* Bus Fault Handler */
-.long	UsageFault_Handler    /* Usage Fault Handler */
+.long	Reset_Handler     /* Hard Fault Handler */
+.long	Reset_Handler     /* MPU Fault Handler */
+.long	Reset_Handler      /* Bus Fault Handler */
+.long	Reset_Handler    /* Usage Fault Handler */
 .long	0                     /* Reserved */
 .long	0                     /* Reserved */
 .long	0                     /* Reserved */
@@ -96,21 +96,21 @@ __isr_vector:
 .long	TIM0_IRQHandler       /*  2:  Timer0 / Timer1           */
 .long	TIM2_IRQHandler       /*  3:  Timer2 / Timer3           */
 .long	MCIA_IRQHandler       /*  4:  MCIa                      */
-.long	MCIB_IRQHandler       /*  5:  MCIb                      */
-.long	UART0_IRQHandler      /*  6:  UART0 - DUT FPGA          */
-.long	UART1_IRQHandler      /*  7:  UART1 - DUT FPGA          */
-.long	UART2_IRQHandler      /*  8:  UART2 - DUT FPGA          */
-.long	UART4_IRQHandler      /*  9:  UART4 - not connected     */
-.long	AACI_IRQHandler       /* 10: AACI / AC97                */
-.long	CLCD_IRQHandler       /* 11: CLCD Combined Interrupt    */
-.long	ENET_IRQHandler       /* 12: Ethernet                   */
-.long	USBDC_IRQHandler      /* 13: USB Device                 */
-.long	USBHC_IRQHandler      /* 14: USB Host Controller        */
-.long	CHLCD_IRQHandler      /* 15: Character LCD              */
-.long	FLEXRAY_IRQHandler    /* 16: Flexray                    */
-.long	CAN_IRQHandler        /* 17: CAN                        */
-.long	LIN_IRQHandler        /* 18: LIN                        */
-.long	I2C_IRQHandler        /* 19: I2C ADC/DAC                */
+.long	UART0_IRQHandler       /*  5:  MCIb                      */
+.long	Reset_Handler      /*  6:  UART0 - DUT FPGA          */
+.long	Reset_Handler      /*  7:  UART1 - DUT FPGA          */
+.long	Reset_Handler      /*  8:  UART2 - DUT FPGA          */
+.long	Reset_Handler      /*  9:  UART4 - not connected     */
+.long	Reset_Handler       /* 10: AACI / AC97                */
+.long	Reset_Handler       /* 11: CLCD Combined Interrupt    */
+.long	Reset_Handler       /* 12: Ethernet                   */
+.long	Reset_Handler      /* 13: USB Device                 */
+.long	Reset_Handler      /* 14: USB Host Controller        */
+.long	Reset_Handler      /* 15: Character LCD              */
+.long	Reset_Handler    /* 16: Flexray                    */
+.long	Reset_Handler        /* 17: CAN                        */
+.long	Reset_Handler        /* 18: LIN                        */
+.long	Reset_Handler        /* 19: I2C ADC/DAC                */
 .long	0                     /* 20: Reserved                   */
 .long	0                     /* 21: Reserved                   */
 .long	0                     /* 22: Reserved                   */

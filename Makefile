@@ -19,7 +19,7 @@ CFLAGS+= -Iinc/
 
 _ := $(shell mkdir -p $(BUILD))
 
-flash: main.elf
+flash: clean main.elf
 	openocd -f openocd.cfg -c "program main.elf verify reset exit"
 
 main.elf: $(OBJS)
