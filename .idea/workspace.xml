@@ -13,7 +13,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3da3b5a0-c9bd-4b7b-8fe5-c06e077af9fb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/GPS_Reciever.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/GPS_Reciever.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/GPS-Tracker.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,12 +83,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/hesha/OneDrive/Desktop/New folder/GPS-Tracker",
+    "last_opened_file_path": "C:/Users/User1/Desktop/Projec/GPS-Tracker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -99,7 +104,7 @@
       <recent name="C:\Users\hesha\OneDrive\Desktop\New folder\GPS-Tracker\inc" />
     </key>
   </component>
-  <component name="RunManager" selected="Makefile Target.main.elf">
+  <component name="RunManager">
     <configuration name="Make" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
       <makefile filename="" target="" workingDirectory="C:\Program Files (x86)\GnuWin32\bin" arguments="">
         <envs />
@@ -118,17 +123,13 @@
       </makefile>
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Makefile Target.Make" />
-      <item itemvalue="Makefile Target.main.elf" />
-      <item itemvalue="Makefile Target.flash" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Makefile Target.main.elf" />
-        <item itemvalue="Makefile Target.flash" />
-      </list>
-    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
