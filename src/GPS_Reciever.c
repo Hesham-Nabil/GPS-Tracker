@@ -17,11 +17,11 @@ void GPS_Start(double *Distance, double coordinates[2][2], char *buffer, int loo
         const int length = 300;
         const char *RMC = "$GPRMC"; // match string
         const char *RMC_PTR = NULL;
-        UART0_TRANSMIT_CHAR('b'); // "TO BE" address of the $ sign of the GPRMC
+        // UART0_TRANSMIT_CHAR('b'); // "TO BE" address of the $ sign of the GPRMC
         UART1_RECIEVE_DATA(buffer, length);
-        UART0_TRANSMIT_CHAR('c'); // this function fills the buffer filled with the data and the garbage
+        // UART0_TRANSMIT_CHAR('c'); // this function fills the buffer filled with the data and the garbage
         RMC_PTR = strstr(buffer, RMC);
-        UART0_TRANSMIT_CHAR('d'); // search for a needle ("$GPRMC") in a hay stack (buffer)
+        // UART0_TRANSMIT_CHAR('d'); // search for a needle ("$GPRMC") in a hay stack (buffer)
         if (RMC_PTR == NULL)
             continue;
         double time, latitude, longitude, knots; // the variables that we want from the gps
@@ -33,7 +33,9 @@ void GPS_Start(double *Distance, double coordinates[2][2], char *buffer, int loo
             coordinates[loop_counter][0] = Todecimal(longitude); // longitude should be stored in the 1st column
             coordinates[loop_counter][1] = Todecimal(latitude);  // lattitude should be stored in the 2nd column
             loop_counter++;
-            UART0_TRANSMIT_CHAR('x');
+            LCD_1602_I2C_Write("New Point...  ");
+            delay(50);
+            // UART0_TRANSMIT_CHAR('x');
         }
         else
         {
