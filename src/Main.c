@@ -30,15 +30,16 @@ void UART0_IRQHandler()
       {
         
         char output_buffer[16] = {};
-        memRead = EepromRead(i, j) / 100000.0;
+        memRead = EepromRead(--i, j) / 100000.0;
         int_part = ((int)memRead);
         fr_part = (memRead - (int)memRead) * 100000;
         sprintf(output_buffer, "(%d.%d,", int_part, fr_part);
         UART0_TRANSMIT_DATA(output_buffer, 9);
-        memRead = EepromRead(--i, j) / 100000.0;
+        memRead = EepromRead(++i, j) / 100000.0;
+        i--;
         int_part = ((int)memRead);
         fr_part = (memRead - (int)memRead) * 100000;
-        sprintf(output_buffer, "-%d.%d)", int_part, fr_part);
+        sprintf(output_buffer, ",%d.%d),", int_part, fr_part);
         UART0_TRANSMIT_DATA(output_buffer, 10);
         UART0_TRANSMIT_CHAR('\n');
       }
@@ -75,60 +76,63 @@ int main(void)
   UART0_IFLS_R = 0;
   __asm(
       "cpsie i");
-  while (1)
-  {
-    LED_OFF();
-    LED_RED_ON();
-    if (SW1_Input() == 1)
-    {
-      flag = 1;
-      LED_OFF();
-      LED_Green_ON();
-      Mem_Address = 0;
-      Mem_Block = 0;
-    }
-    while (flag)
-    {
-      EepromWrite(Mem_Address, 14, 31);
-      EepromWrite(Mem_Block, 15, 31);
-      GPS_Start(&distance, coordinates, buffer, gps_loop_counter);
-      //    /////////////Displaying Distance///////////////
-      LCD_1602_I2C_Write("Distance..  ");
-      delay(100);
-      LCD_DISPLAY_FLOAT(distance);
-      delay(100);
-      ///////////////Saving Distance/////////////////
+      while(1){
+      UART1_RECIEVE_CHAR(&x);
+      UART0_TRANSMIT_CHAR(x);}
+  // while (1)
+  // {
+  //   LED_OFF();
+  //   LED_RED_ON();
+  //   if (SW1_Input() == 1)
+  //   {
+  //     flag = 1;
+  //     LED_OFF();
+  //     LED_Green_ON();
+  //     Mem_Address = 0;
+  //     Mem_Block = 0;
+  //   }
+  //   while (flag)
+  //   {
+  //     EepromWrite(Mem_Address, 14, 31);
+  //     EepromWrite(Mem_Block, 15, 31);
+  //     GPS_Start(&distance, coordinates, buffer, gps_loop_counter);
+  //     //    /////////////Displaying Distance///////////////
+  //     LCD_1602_I2C_Write("Distance..  ");
+  //     delay(100);
+  //     LCD_DISPLAY_FLOAT(distance);
+  //     delay(100);
+  //     ///////////////Saving Distance/////////////////
 
-      LCD_1602_I2C_Write("Saving..  ");
-      delay(100);
-      if (Mem_Address < 16 && SW2_Input() == 0) //& SW2_Input() == 1
-      {
-        if (Mem_Block == 31 && (Mem_Address == 14))
-        {
-          flag = 0;
-          break;
-        }
-        EepromWrite(coordinates[0][0] * 100000, Mem_Address, Mem_Block);
-        EepromWrite(Mem_Address, 14, 31);
-        EepromWrite(coordinates[0][1] * 100000, ++Mem_Address, Mem_Block);
-        EepromWrite(Mem_Address, 14, 31);
-        EepromWrite(coordinates[1][0] * 100000, ++Mem_Address, Mem_Block);
-        EepromWrite(Mem_Address, 14, 31);
-        EepromWrite(coordinates[1][1] * 100000, ++Mem_Address, Mem_Block);
-        EepromWrite(Mem_Address, 14, 31);
-        Mem_Address++;
-      }
-      else if (Mem_Block < 32 && SW2_Input() == 0)
-      {
-        Mem_Block++;
-        Mem_Address = 0;
-        EepromWrite(Mem_Block, 15, 31);
-      }
-      else
-      {
-        flag = 0;
-        break;
-      }
-    }
-  }
+  //     LCD_1602_I2C_Write("Saving..  ");
+  //     delay(100);
+  //     if (Mem_Address < 16 && SW2_Input() == 0) //& SW2_Input() == 1
+  //     {
+  //       if (Mem_Block == 31 && (Mem_Address == 14))
+  //       {
+  //         flag = 0;
+  //         break;
+  //       }
+  //       EepromWrite(coordinates[0][0] * 100000, Mem_Address, Mem_Block);
+  //       EepromWrite(Mem_Address, 14, 31);
+  //       EepromWrite(coordinates[0][1] * 100000, ++Mem_Address, Mem_Block);
+  //       EepromWrite(Mem_Address, 14, 31);
+  //       EepromWrite(coordinates[1][0] * 100000, ++Mem_Address, Mem_Block);
+  //       EepromWrite(Mem_Address, 14, 31);
+  //       EepromWrite(coordinates[1][1] * 100000, ++Mem_Address, Mem_Block);
+  //       EepromWrite(Mem_Address, 14, 31);
+  //       Mem_Address++;
+  //     }
+  //     else if (Mem_Block < 32 && SW2_Input() == 0)
+  //     {
+  //       Mem_Block++;
+  //       Mem_Address = 0;
+  //       EepromWrite(Mem_Block, 15, 31);
+  //     }
+  //     else
+  //     {
+  //       flag = 0;
+  //       break;
+  //     }
+  //   }
+  // }
 }
