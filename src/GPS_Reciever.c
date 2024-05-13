@@ -6,6 +6,7 @@
 #include "Math_Functions.h"
 #include "GPIO.h"
 #include "Systick.h"
+#include "LCD.h"
 const double Earth_Radius = 6371000;
 void GPS_Start(double *Distance, double coordinates[2][2], char *buffer, int loop_counter)
 { // A function that parces the data after $GPRMC, and retrieve the data in variables
@@ -27,18 +28,21 @@ void GPS_Start(double *Distance, double coordinates[2][2], char *buffer, int loo
         double time, latitude, longitude, knots; // the variables that we want from the gps
         char status, ns, ew;                     // sscanf takes string input ($ bta3 al GPRMC) and format string ("$GPRMC,%f,%c,%f,%c,%f,%c,%f,") and refrenced var
         if (sscanf(RMC_PTR, "$GPRMC,%lf,%c,%lf,%c,%lf,%c", &time, &status, &latitude, &ns, &longitude, &ew) == 6)
-        {
+        {   
             if (status != 'A')
                 continue;
+                // LCD_DISPLAY_FLOAT(longitude);
+                // delay(100);
+                // LCD_DISPLAY_FLOAT(latitude);
+                // delay(100);
             coordinates[loop_counter][0] = Todecimal(longitude); // longitude should be stored in the 1st column
             coordinates[loop_counter][1] = Todecimal(latitude);  // lattitude should be stored in the 2nd column
-            loop_counter++;
-            // LCD_1602_I2C_Write("New Point...  ");
-            // delay(50);
-            LCD_DISPLAY_FLOAT(coordinates[loop_counter][0]);
-            delay(100);
-            LCD_DISPLAY_FLOAT(coordinates[loop_counter][1]);
-            delay(100);
+                // LCD_DISPLAY_FLOAT(coordinates[loop_counter][1]);
+                // delay(100);
+                loop_counter++;
+            
+            LCD_1602_I2C_Write("New Point...  ");
+            delay(50);
             // UART0_TRANSMIT_CHAR('x');
         }
         else

@@ -2,6 +2,7 @@
 #include "UART.h"
 #include "GPS_Reciever.h"
 #include "GPIO.h"
+#include "Math_Functions.h"
 #include "Systick.h"
 #include "EEPROM.h"
 #include <stdlib.h>
@@ -18,7 +19,8 @@ void UART0_IRQHandler()
   double memRead = 0;
   int fr_part = 0;
   int int_part = 0;
-  char output_buffer[16] = {};
+  char output_buffer[22] = {};
+  char points_buffer[22]={};
   SetBit(UART0_ICR_R, 4);
   char x;
   UART0_RECIEVE_CHAR(&x);
@@ -35,17 +37,15 @@ void UART0_IRQHandler()
           continue;
         }
 
-        memRead = EepromRead(--i, j) / 100000.0;
-        int_part = ((int)memRead);
-        fr_part = (memRead - (int)memRead) * 100000;
-        sprintf(output_buffer, "(%d.%d,", int_part, fr_part);
-        UART0_TRANSMIT_DATA(output_buffer, 9);
+        memRead = EepromRead(--i, j) /100000.0;
+        floatToString(memRead, points_buffer, 10);
+       sprintf(output_buffer ,"(%s,", points_buffer);
+        UART0_TRANSMIT_DATA(output_buffer,22 );
         memRead = EepromRead(++i, j) / 100000.0;
         i--;
-        int_part = ((int)memRead);
-        fr_part = (memRead - (int)memRead) * 100000;
-        sprintf(output_buffer, ",%d.%d),", int_part, fr_part);
-        UART0_TRANSMIT_DATA(output_buffer, 10);
+        floatToString(memRead, points_buffer, 10);
+        sprintf(output_buffer, "%s),", points_buffer);
+        UART0_TRANSMIT_DATA(output_buffer, 22);
         UART0_TRANSMIT_CHAR('\n');
       }
       max_address = 15;
@@ -80,6 +80,7 @@ int main(void)
   UART0_IFLS_R = 0;
   __asm(
       "cpsie i");
+    
    while (1)
    {
      LED_OFF();
