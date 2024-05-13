@@ -11,36 +11,39 @@
 #include "i2c.h"
 #include "Commands.h"
 void UART0_IRQHandler()
-{ SetBit(UART0_ICR_R, 4);
-char x;
+{
+  SetBit(UART0_ICR_R, 4);
+  char x;
   UART0_RECIEVE_CHAR(&x);
-  if(x=='u'||x=='U'){
-  UART0_TRANSMIT_CHAR('1');
-  delay(100);
-  
-  int max_block = EepromRead(15, 31);
-  int max_address = EepromRead(14, 31);
-  double memRead = 0;
-  int fr_part = 0;
-  int int_part = 0;
-  for (int j; j < max_block; j++)
+  if (x == 'u' || x == 'U')
   {
-    for (int i = 0; i < max_address; i++)
+    UART0_TRANSMIT_CHAR('1');
+    delay(100);
+
+    int max_block = EepromRead(15, 31);
+    int max_address = EepromRead(14, 31);
+    double memRead = 0;
+    int fr_part = 0;
+    int int_part = 0;
+    for (int j; j < max_block; j++)
     {
-      char output_buffer[16] = {};
-      memRead = EepromRead(i, j) / 100000.0;
-      int_part = ((int)memRead);
-      fr_part = (memRead - (int)memRead) * 100000;
-      sprintf(output_buffer, "(%d.%d,", int_part, fr_part);
-      UART0_TRANSMIT_DATA(output_buffer, 9);
-      memRead = EepromRead(++i, j) / 100000.0;
-      int_part = ((int)memRead);
-      fr_part = (memRead - (int)memRead) * 100000;
-      sprintf(output_buffer, "-%d.%d)", int_part, fr_part);
-      UART0_TRANSMIT_DATA(output_buffer, 10);
-      UART0_TRANSMIT_CHAR('\n');
+      for (int i = 0; i < max_address; i++)
+      {
+        char output_buffer[16] = {};
+        memRead = EepromRead(i, j) / 100000.0;
+        int_part = ((int)memRead);
+        fr_part = (memRead - (int)memRead) * 100000;
+        sprintf(output_buffer, "(%d.%d,", int_part, fr_part);
+        UART0_TRANSMIT_DATA(output_buffer, 9);
+        memRead = EepromRead(++i, j) / 100000.0;
+        int_part = ((int)memRead);
+        fr_part = (memRead - (int)memRead) * 100000;
+        sprintf(output_buffer, "-%d.%d)", int_part, fr_part);
+        UART0_TRANSMIT_DATA(output_buffer, 10);
+        UART0_TRANSMIT_CHAR('\n');
+      }
     }
-  }}
+  }
 }
 int main(void)
 {
