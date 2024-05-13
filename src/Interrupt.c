@@ -20,7 +20,7 @@ UART0_PORTA_Init();                   //initailizing UART0
 	
 	
 
-NVIC_PRI2_R |= 0x00002000;     // set priorty 1 to UART0   (NVIC_PRI2_R is the reg for UART and in segment 1)
+NVIC_PRI1_R |= 0x00002000;     // set priorty 1 to UART0   (NVIC_PRI2_R is the reg for UART and in segment 1)
 NVIC_EN0_R = 0x00000020;      // enable interrupts for UART0 (UART 0 enalble reg is EN0 and the bit is the fifth one)
 	
 	
