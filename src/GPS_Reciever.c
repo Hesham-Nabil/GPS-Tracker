@@ -10,7 +10,7 @@ const double Earth_Radius = 6371000;
 void GPS_Start(double *Distance, double coordinates[2][2], char *buffer, int loop_counter)
 { // A function that parces the data after $GPRMC, and retrieve the data in variables
     while (1)
-    {
+    {   
         int fr_part = 0;
         int int_part = 0;
         char output_buffer[17] = {};
@@ -33,8 +33,12 @@ void GPS_Start(double *Distance, double coordinates[2][2], char *buffer, int loo
             coordinates[loop_counter][0] = Todecimal(longitude); // longitude should be stored in the 1st column
             coordinates[loop_counter][1] = Todecimal(latitude);  // lattitude should be stored in the 2nd column
             loop_counter++;
-            LCD_1602_I2C_Write("New Point...  ");
-            delay(50);
+            // LCD_1602_I2C_Write("New Point...  ");
+            // delay(50);
+            LCD_DISPLAY_FLOAT(coordinates[loop_counter][0]);
+            delay(100);
+            LCD_DISPLAY_FLOAT(coordinates[loop_counter][1]);
+            delay(100);
             // UART0_TRANSMIT_CHAR('x');
         }
         else
