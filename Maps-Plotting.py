@@ -8,12 +8,12 @@ def plot_coordinates_on_map(coordinates):
 
     # Create a Google Maps plot centered at the first coordinate
 
-    gmap = gmplot.GoogleMapPlotter(lngs[0], lats[0], 16)
+    gmap = gmplot.GoogleMapPlotter(lats[0], lngs[0], 16)
 
     # Add markers for each coordinate
-    for lat, lng in coordinates:
-        gmap.marker(lng, lat)
-    gmap.plot(lngs, lats, 'blue', edge_width=5)
+    gmap.marker(lats[0], lngs[0])
+    gmap.plot(lats, lngs, 'blue', edge_width=5)
+    gmap.marker(lats[-1], lngs[-1], color='grey', title='First Point')
     # Generate an HTML file containing the map
     gmap.draw("map.html")
     print("Map saved as 'map.html'.")

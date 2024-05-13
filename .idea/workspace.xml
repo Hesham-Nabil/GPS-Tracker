@@ -13,19 +13,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3da3b5a0-c9bd-4b7b-8fe5-c06e077af9fb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Maps-Plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/Maps-Plotting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/GPS_Reciever.o" beforeDir="false" afterPath="$PROJECT_DIR$/build/GPS_Reciever.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Main.o" beforeDir="false" afterPath="$PROJECT_DIR$/build/Main.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Math_Functions.o" beforeDir="false" afterPath="$PROJECT_DIR$/build/Math_Functions.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/Math_Functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/Math_Functions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.elf" beforeDir="false" afterPath="$PROJECT_DIR$/main.elf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GPS_Reciever.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/GPS_Reciever.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LCD.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/LCD.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Math_Functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/Math_Functions.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
