@@ -82,7 +82,7 @@ int main(void)
       "cpsie i");
     
    while (1)
-   {
+   {  
      LED_OFF();
     LED_RED_ON();
     if (SW1_Input() == 1)

@@ -18,6 +18,8 @@ void GPS_Start(double *Distance, double coordinates[2][2], char *buffer, int loo
         const int length = 300;
         const char *RMC = "$GPRMC"; // match string
         const char *RMC_PTR = NULL;
+         LCD_1602_I2C_Write("Searching...  ");
+         delay(50);
         // UART0_TRANSMIT_CHAR('b'); // "TO BE" address of the $ sign of the GPRMC
         UART1_RECIEVE_DATA(buffer, length);
         // UART0_TRANSMIT_CHAR('c'); // this function fills the buffer filled with the data and the garbage
