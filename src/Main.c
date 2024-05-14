@@ -76,7 +76,6 @@ int main(void)
   int Mem_Block;
   int gps_loop_counter = 0;
   flag = 0;
-  char x;
   UART0_IFLS_R = 0;
   __asm(
       "cpsie i");

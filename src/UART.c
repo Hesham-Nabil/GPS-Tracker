@@ -7,11 +7,12 @@ void UART0_PORTA_Init()
   while ((GetBit(SYSCTL_PRUART_R, 0) == 0))
     ;                           // waiting for UART0 activation
   SetBit(SYSCTL_RCGCGPIO_R, 0); // activate PORT A
-  while ((SYSCTL_PRGPIO_R & 0x1) == 0);                                                                // waiting for port A activation
-  ClearBit(UART0_CTL_R, 0);                                          // disabling UART while initializing
-  UART0_IBRD_R = 104;                                                // IBRD=int(16000000/(16*9600)) = int (104.16667) (divider for frequency)
-  UART0_FBRD_R = 11;                                                 // FBRD int(0.16667 * 64 +0.5)
-  UART0_LCRH_R = 0x0070;                                             // bit 4,5 are set to 11, which corresponds to an 8-bit word length, bit 6 is set to 1 enabling the FIFO for the UART RX & TX
+  while ((SYSCTL_PRGPIO_R & 0x1) == 0)
+    ;                       // waiting for port A activation
+  ClearBit(UART0_CTL_R, 0); // disabling UART while initializing
+  UART0_IBRD_R = 104;       // IBRD=int(16000000/(16*9600)) = int (104.16667) (divider for frequency)
+  UART0_FBRD_R = 11;        // FBRD int(0.16667 * 64 +0.5)
+  UART0_LCRH_R = 0x0070;    // bit 4,5 are set to 11, which corresponds to an 8-bit word length, bit 6 is set to 1 enabling the FIFO for the UART RX & TX
   UART0_IM_R |= (1 << 4);
   NVIC_EN0_R |= (1 << 5);
   UART0_CTL_R = 0x0301;                                              // enable RXE, TXE and UART 001100000001
@@ -118,4 +119,4 @@ void UART1_RECIEVE_DATA(char *buffer, int length)
       i--;
     }
   }
-} 
+}

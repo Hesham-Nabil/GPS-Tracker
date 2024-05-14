@@ -61,10 +61,11 @@ void LCD_1602_I2C_Write(char *ptr)
     I2C0_Write_Single(LCD_1602_7_Bit_Address, 1 << 3);
 }
 
-void LCD_DISPLAY_FLOAT(double x){
+void LCD_DISPLAY_FLOAT(double x)
+{
     char LCD_output_buffer[16] = {};
     int int_part = ((int)x);
-    int fr_part = ((x*1000 - (int)x*1000)) ;
+    int fr_part = ((x * 1000 - (int)x * 1000));
     sprintf(LCD_output_buffer, "%d.%d", int_part, fr_part);
-      LCD_1602_I2C_Write(LCD_output_buffer);
+    LCD_1602_I2C_Write(LCD_output_buffer);
 }
