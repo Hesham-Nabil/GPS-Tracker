@@ -67,7 +67,7 @@ int main(void)
   I2C_Init();
   LCD_1602_I2C_Init();
   const int length = 300;
-  double coordinates[3][2];
+  double coordinates[2][2];
   double distance = 0;
   char buffer[length];
   char LCD_output_buffer[16] = {};
@@ -75,7 +75,9 @@ int main(void)
   int Mem_Address;
   int Mem_Block;
   int gps_loop_counter = 0;
+  int counter =0;
   flag = 0;
+
   UART0_IFLS_R = 0;
   __asm(
       "cpsie i");
@@ -92,12 +94,14 @@ int main(void)
       Mem_Address = 0;
       Mem_Block = 0;
       distance=0;
+      counter=0;
     }
     while (flag)
     {
       EepromWrite(Mem_Address, 14, 31);
       EepromWrite(Mem_Block, 15, 31);
-      GPS_Start(&distance, coordinates, buffer, gps_loop_counter);
+      GPS_Start(&distance, coordinates, buffer, gps_loop_counter,counter);
+      counter++;
       //    /////////////Displaying Distance///////////////
       LCD_1602_I2C_Write("Distance..  ");
       delay(100);
