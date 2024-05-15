@@ -17,10 +17,8 @@ void UART0_IRQHandler()
   int max_block = EepromRead(15, 31);
   int max_address = EepromRead(14, 31);
   double memRead = 0;
-  int fr_part = 0;
-  int int_part = 0;
   char output_buffer[22] = {};
-  char points_buffer[22]={};
+  char points_buffer[22] = {};
   SetBit(UART0_ICR_R, 4);
   char x;
   UART0_RECIEVE_CHAR(&x);
@@ -36,11 +34,10 @@ void UART0_IRQHandler()
         {
           continue;
         }
-
-        memRead = EepromRead(--i, j) /100000.0;
+        memRead = EepromRead(--i, j) / 100000.0;
         floatToString(memRead, points_buffer, 10);
-       sprintf(output_buffer ,"(%s,", points_buffer);
-        UART0_TRANSMIT_DATA(output_buffer,22 );
+        sprintf(output_buffer, "(%s,", points_buffer);
+        UART0_TRANSMIT_DATA(output_buffer, 22);
         memRead = EepromRead(++i, j) / 100000.0;
         i--;
         floatToString(memRead, points_buffer, 10);
@@ -75,16 +72,14 @@ int main(void)
   int Mem_Address;
   int Mem_Block;
   int gps_loop_counter = 0;
-  int counter =0;
+  int counter = 0;
   flag = 0;
-
   UART0_IFLS_R = 0;
   __asm(
       "cpsie i");
-    
-   while (1)
-   {  
-     LED_OFF();
+  while (1)
+  {
+    LED_OFF();
     LED_RED_ON();
     if (SW1_Input() == 1)
     {
@@ -93,22 +88,21 @@ int main(void)
       LED_Green_ON();
       Mem_Address = 0;
       Mem_Block = 0;
-      distance=0;
-      counter=0;
+      distance = 0;
+      counter = 0;
     }
     while (flag)
     {
       EepromWrite(Mem_Address, 14, 31);
       EepromWrite(Mem_Block, 15, 31);
-      GPS_Start(&distance, coordinates, buffer, gps_loop_counter,counter);
+      GPS_Start(&distance, coordinates, buffer, gps_loop_counter, counter);
       counter++;
       //    /////////////Displaying Distance///////////////
       LCD_1602_I2C_Write("Distance..  ");
       delay(100);
       LCD_DISPLAY_FLOAT(distance);
       delay(100);
-  //     ///////////////Saving Distance/////////////////
-
+      //     ///////////////Saving Distance/////////////////
       LCD_1602_I2C_Write("Saving..  ");
       delay(100);
       if (Mem_Address < 16 && SW2_Input() == 0) //& SW2_Input() == 1
