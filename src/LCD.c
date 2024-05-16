@@ -1,5 +1,6 @@
 #include "tm4c123gh6pm.h"
 #include "Systick.h"
+#include "Math_Functions.h"
 #include "LCD.h"
 #define LCD_1602_EN (1 << 2)
 #define LCD_1602_RS (1 << 0)
@@ -64,8 +65,8 @@ void LCD_1602_I2C_Write(char *ptr)
 void LCD_DISPLAY_FLOAT(double x)
 {
     char LCD_output_buffer[16] = {};
-    int int_part = ((int)x);
-    int fr_part = ((x * 1000 - (int)x * 1000));
-    sprintf(LCD_output_buffer, "%d.%d", int_part, fr_part);
+    char output_buffer[16]={};
+    floatToString(x,output_buffer,5);
+    sprintf(LCD_output_buffer, "%s",output_buffer);
     LCD_1602_I2C_Write(LCD_output_buffer);
 }
